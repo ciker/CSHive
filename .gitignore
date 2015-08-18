@@ -13,14 +13,18 @@
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
+# this is a lib , so release is need inlclude.
+#[Rr]elease/
+#[Rr]eleases/
 x64/
 x86/
 build/
 bld/
 [Bb]in/
 [Oo]bj/
+
+
+
 
 # Visual Studo 2015 cache/options directory
 .vs/
@@ -194,3 +198,5 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+
