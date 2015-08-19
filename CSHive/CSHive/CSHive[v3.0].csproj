@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attribute\EnumTextAttribute.cs" />
     <Compile Include="Attribute\IgnoreAttribute.cs" />
+    <Compile Include="Attribute\TextAttribute.cs" />
     <Compile Include="Caching\CacheItem.cs" />
     <Compile Include="Caching\Cacher.cs" />
     <Compile Include="Caching\FuncCacheItem.cs" />

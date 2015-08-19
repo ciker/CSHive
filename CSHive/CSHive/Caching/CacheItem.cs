@@ -5,7 +5,7 @@ namespace CS.Caching
     /// <summary>
     /// 缓存项基本定义
     /// </summary>
-    public class CacheItem<TV>
+    public  class CacheItem<TV>
     {
         /// <summary>
         /// 值
@@ -23,15 +23,12 @@ namespace CS.Caching
         /// <summary>
         /// 缓存内容是否已经过期
         /// </summary>
-        public virtual bool Expired
-        {
-            get { return ExpiresTime < DateTime.Now.ToSecondTime(); }
-        }
+        public virtual bool Expired => ExpiresTime < DateTime.Now.ToSecondTime();
 
         /// <summary>
         /// 设置过期时间
         /// </summary>
-        /// <param name="expiresIn"></param>
+        /// <param name="expiresIn">从即时开始的有效时间 ，秒</param>
         public virtual void SetExpiresTime(int expiresIn)
         {
             ExpiresTime = DateTime.Now.ToSecondTime() + expiresIn;
