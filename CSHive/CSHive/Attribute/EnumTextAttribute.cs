@@ -5,16 +5,25 @@ namespace CS.Attribute
     /// <summary>
     /// 枚举文本描述
     /// </summary>
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
+    
     public class EnumTextAttribute : TextAttribute
     {
         /// <summary>
         /// 初始化
         /// </summary>
         /// <param name="nativeName"></param>
-        public EnumTextAttribute(string nativeName)
+        public EnumTextAttribute(string nativeName):this(nativeName,0)
+        {
+        }
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="nativeName"></param>
+        /// <param name="order"></param>
+        public EnumTextAttribute(string nativeName, int order)
         {
             NativeName = nativeName;
+            Order = order;
         }
 
         /// <summary>
@@ -26,6 +35,14 @@ namespace CS.Attribute
         /// 枚举的值（int类型）
         /// </summary>
         public int Value { get; set; }
+
+        /// <summary>
+        /// 排序
+        /// <remarks>
+        /// 默认等于Value值
+        /// </remarks>
+        /// </summary>
+        public int Order { get; set; }
 
     }
 }

@@ -92,9 +92,14 @@
     <Compile Include="Storage\BinaryStorage.cs" />
     <Compile Include="Storage\StringStorage.cs" />
     <Compile Include="Storage\XmlStorage.cs" />
+    <Compile Include="Utils\App.cs" />
     <Compile Include="Theory\GaussianRandom.cs" />
+    <Compile Include="Utils\FileHeper.cs" />
     <Compile Include="Validation\RegexLib.cs" />
     <Compile Include="Validation\Valid.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

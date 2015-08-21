@@ -31,7 +31,7 @@ namespace CS.Caching
         /// <param name="expiresIn">从即时开始的有效时间 ，秒</param>
         public virtual void SetExpiresTime(int expiresIn)
         {
-            ExpiresTime = DateTime.Now.ToSecondTime() + expiresIn;
+            ExpiresTime = DateTime.Now.ToSecondTime() + expiresIn -1;
         }
 
     }

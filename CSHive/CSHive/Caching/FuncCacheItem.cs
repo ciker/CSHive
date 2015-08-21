@@ -6,7 +6,7 @@ namespace CS.Caching
     /// <summary>
     /// 自动调用方法更新缓存项
     /// <remarks>
-    /// 
+    /// 主要用于API调用，并且缓存一定时间
     /// </remarks>
     /// 
     /// <example>

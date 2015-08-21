@@ -5,6 +5,19 @@
     /// </summary>
     public static class IntExtension
     {
+
+        /// <summary>
+        /// 当两个给出的int值相同时返回trueStr，否则返回null
+        /// </summary>
+        /// <param name="int1"></param>
+        /// <param name="int2"></param>
+        /// <param name="trueStr"></param>
+        /// <returns></returns>
+        public static string IsEqual(this int int1, int int2, string trueStr)
+        {
+            return int1 == int2 ? trueStr : null;
+        }
+
         /// <summary>
         /// 返回Init对应的字节数组
         /// </summary>

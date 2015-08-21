@@ -11,7 +11,38 @@ namespace System
     public static class StringExtension
     {
 
+        /// <summary>
+        /// 是否为无内容的串
+        /// </summary>
+        /// <param name="nullString"></param>
+        /// <returns></returns>
+        public static bool IsEmpty(this string  nullString)
+        {
+            return string.IsNullOrWhiteSpace(nullString);
+        }
 
+        /// <summary>
+        /// 如果串为空则使用替补串替换
+        /// </summary>
+        /// <param name="nullString"></param>
+        /// <param name="standbyString">替补串</param>
+        /// <returns></returns>
+        public static string IsEmpty(this string nullString, string standbyString)
+        {
+            return string.IsNullOrWhiteSpace(nullString) ? standbyString : nullString;
+        }
+
+        /// <summary>
+        /// 空串时返回第一个参数的值
+        /// </summary>
+        /// <param name="nullStr">可能为空的串</param>
+        /// <param name="trueString">空时返回</param>
+        /// <param name="falseString">非空时返回</param>
+        /// <returns></returns>
+        public static string IsEmpty(this string nullStr, string trueString, string falseString)
+        {
+            return string.IsNullOrWhiteSpace(nullStr) ? trueString : falseString;
+        }
 
         /// <summary>
         ///  采用UTF8 编码URL
