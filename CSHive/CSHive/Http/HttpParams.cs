@@ -14,15 +14,21 @@ namespace CS.Http
     /// </summary>
     public class HttpParams : List<HttpParam>
     {
-
+        /// <summary>
+        /// 返回表示当前 <see cref="T:System.Object"/> 的 <see cref="T:System.String"/>。
+        /// </summary>
+        /// <returns>
+        /// <see cref="T:System.String"/>，表示当前的 <see cref="T:System.Object"/>。
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            string[] arrQ = Array.ConvertAll<HttpParam, string>(ToArray(), s => s);
+            var arrQ = Array.ConvertAll<HttpParam, string>(ToArray(), s => s);
             return string.Join("&", arrQ);
         }
 
         /// <summary>
-        /// 隐式转换，将HttpParams隐式转换成形如：Name=Value&Name2=Value2 ... 形式的字符串
+        /// 隐式转换，将HttpParams隐式转换成形如：Name=Value&amp;Name2=Value2 ... 形式的字符串
         /// </summary>
         /// <param name="httpParams">Http请求的参数集合<see cref="HttpParams"/></param>
         /// <returns></returns>
@@ -34,12 +40,12 @@ namespace CS.Http
         /// <summary>
         /// 强制将查询字符串转换为<see cref="HttpParams"/>。
         /// </summary>
-        /// <param name="nvs">含有查询字符串的部分或全部，形如：Name=Value&Name2=Value2 ... </param>
+        /// <param name="nvs">含有查询字符串的部分或全部，形如：Name=Value&amp;Name2=Value2 ... </param>
         /// <returns>可能为null</returns>
         /// <exception cref="NullReferenceException">非法的名时值有也无效，此时无法转换合法的HttpParams。只会抛出Null引用的异常。</exception>
         public static explicit operator HttpParams(string nvs)
         {
-            var index = nvs.IndexOf("?") + 1;
+            var index = nvs.IndexOf("?", StringComparison.Ordinal) + 1;
             var nvString = nvs.Substring(index);
             if (string.IsNullOrEmpty(nvString)) return null;
 
@@ -71,66 +77,7 @@ namespace CS.Http
 
     #region HttpParam Http的参数(URL参数，POST等参数键值对)键值对
 
-    /// <summary>
-    /// Http的参数名及值
-    /// 键值对只读，只能在构造时赋值。
-    /// </summary>
-    public class HttpParam
-    {
-        private readonly string _name;
-        private readonly string _value;
-
-        public HttpParam(string name, string value)
-        {
-            _name = name;
-            _value = value;
-        }
-
-        /// <summary>
-        /// 参数名
-        /// </summary>
-        public string Name
-        {
-            get { return _name; }
-        }
-
-        /// <summary>
-        /// 参数值
-        /// </summary>
-        public string Value
-        {
-            get { return _value; }
-        }
-
-        public override string ToString()
-        {
-            return !string.IsNullOrEmpty(Name) ? string.Format("{0}={1}", Name, Value) : string.Empty;
-        }
-
-        /// <summary>
-        /// 隐式转换，将UrlParamter隐式转换成形如：Name=Value形式的字符串
-        /// </summary>
-        /// <param name="httpParam"></param>
-        /// <returns></returns>
-        public static implicit operator string(HttpParam httpParam)
-        {
-            return httpParam.ToString();
-        }
-
-        /// <summary>
-        /// 强制将形如Name=Value的字符串转换为HttpParam的形式。
-        /// </summary>
-        /// <param name="keyValue">形如Name=Value的字符串</param>
-        /// <returns>可能为null</returns>
-        /// <exception cref="NullReferenceException">非法的名时值有也无效，此时无法转换合法的UrlParamter参数。只会抛出Null引用的异常。</exception>
-        public static explicit operator HttpParam(string keyValue)
-        {
-            var arr = keyValue.Split('=');
-            return (arr.Length != 2 || string.IsNullOrEmpty(arr[0])) ? null : new HttpParam(arr[0], arr[1]);
-        }
-
-    }
-
+    
     #endregion
 
 
@@ -146,7 +93,7 @@ namespace CS.Http
     {
         #region IComparer<UrlParameter> Members
 
-        public int Compare(HttpParam x, HttpParam y)
+        int IComparer<HttpParam>.Compare(HttpParam x, HttpParam y)
         {
             return x.Name == y.Name ? string.Compare(x.Value, y.Value) : string.Compare(x.Name, y.Name);
         }

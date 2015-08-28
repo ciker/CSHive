@@ -47,7 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attribute\EnumTextAttribute.cs" />
+    <Compile Include="Attribute\EditEnableAttribute.cs" />
+    <Compile Include="Attribute\ValidationAttribute.cs" />
+    <Compile Include="Extension\CollectionExtension.cs" />
+    <Compile Include="Extension\StringBuilderExtension.cs" />
+    <Compile Include="Serialization\CommandStyle.cs" />
+    <Compile Include="Serialization\XmlCdataText.cs" />
+    <Compile Include="Utils\AttributeHelper.cs" />
+    <Compile Include="Attribute\EnumExtAttribute.cs" />
     <Compile Include="Attribute\IgnoreAttribute.cs" />
     <Compile Include="Attribute\TextAttribute.cs" />
     <Compile Include="Caching\CacheItem.cs" />
@@ -82,6 +89,7 @@
     <Compile Include="Http\AsyncHttp.cs" />
     <Compile Include="Http\HttpBase.cs" />
     <Compile Include="Http\HttpHelper.cs" />
+    <Compile Include="Http\HttpParam.cs" />
     <Compile Include="Http\HttpParams.cs" />
     <Compile Include="Http\SyncHttp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,8 +103,11 @@
     <Compile Include="Utils\App.cs" />
     <Compile Include="Theory\GaussianRandom.cs" />
     <Compile Include="Utils\FileHeper.cs" />
+    <Compile Include="Utils\GZipHelper.cs" />
+    <Compile Include="Utils\TypeHelper.cs" />
     <Compile Include="Validation\RegexLib.cs" />
     <Compile Include="Validation\Valid.cs" />
+    <Compile Include="Validation\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System\" />

@@ -1,4 +1,7 @@
-﻿namespace System
+﻿using System.Xml.Serialization;
+using CS.Serialization;
+
+namespace System
 {
     public static class ObjectExtension
     {
@@ -486,7 +489,30 @@
 
         #endregion
 
+        #region ToXml,FromXml
 
+        /// <summary>
+        /// 序列化成XML
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        public static string ToXml<T>(this T o)
+        {
+            var rst =  XmlSerializor.Serialize(o);
+            return rst.Replace(" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", "");
+        }
+        /// <summary>
+        /// 将XML序列化成目标对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="xml"></param>
+        /// <returns></returns>
+        public static T FromXml<T>(this string xml)
+        {
+            return XmlSerializor.Deserialize<T>(xml);
+        }
+
+        #endregion
 
 
         #region others tests

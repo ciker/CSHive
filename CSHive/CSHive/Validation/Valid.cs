@@ -61,7 +61,26 @@ namespace CS.Validation
         {
             return !string.IsNullOrEmpty(input) && Regex.IsMatch(input, pattern);
         }
-        
+
+        /// <summary>
+        /// 通用名称验证，不可为空且英文3~50，中文2~25字符
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static bool NameValidator(string input)
+        {
+            return Verify(input, RegexLib.NAME);
+        }
+        /// <summary>
+        /// 描述验证，可以为空，不为空时 英文5~200，中文2~100字符
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static bool DescriptionValidator(string input)
+        {
+            return string.IsNullOrEmpty(input) || Verify(input, RegexLib.DESCRIPTION);
+        }
+
         /// <summary>
         /// 帐户验证[英文数字]:英文开头,4~32位
         /// </summary>
@@ -78,7 +97,7 @@ namespace CS.Validation
         /// </summary>
         /// <param name="input">需要验证的 名字</param>
         /// <returns>验证结果</returns>
-        public static bool NameValidator(string input)
+        public static bool NicknameValidator(string input)
         {
             return Verify(input, RegexLib.NICKNAME);
         }

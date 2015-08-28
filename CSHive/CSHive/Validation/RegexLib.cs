@@ -15,7 +15,7 @@ namespace CS.Validation
     /// </summary>
     /// 
     /// <description class = "CS.Utility.RegexLib">
-    /// 
+    ///  
     /// </description>
     /// 
     /// <history>
@@ -29,7 +29,20 @@ namespace CS.Validation
         public const string ACCOUNT = "^[A-Za-z][A-Za-z0-9]{3,32}$";
 
         /// <summary>
+        /// 通用名称验证 英文2~50，中文2~25字符
+        /// </summary>
+        public const string NAME = "^[A-Za-z0-9]{2,50}$|^[\u4e00-\u9fa5][\u4e00-\u9fa5A-Za-z0-9]{1,25}$";
+
+        /// <summary>
+        /// 通过描述验 英文5~200，中文2~100字符
+        /// </summary>
+        public const string DESCRIPTION = @"[\sA-Za-z0-9\s]{5,200}|[\s\u4e00-\u9fa5\s][\s\u4e00-\u9fa5A-Za-z0-9\s]{1,100}";
+
+        /// <summary>
         /// 标准用户的正则表达式 英文开头3-16 字符, 中文开头 2-12 字符
+        /// <remarks>
+        /// Note：utf-8编码的中文一个算2个长度
+        /// </remarks>
         /// </summary>
         public const string NICKNAME = "^[a-z][A-Za-z0-9]{2,16}$|^[\u4e00-\u9fa5][\u4e00-\u9fa5A-Za-z0-9]{1,11}$";
 
