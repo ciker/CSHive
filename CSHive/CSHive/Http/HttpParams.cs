@@ -66,7 +66,7 @@ namespace CS.Http
             get
             {
                 var y = Find(x => x.Name == name);
-                return y != null ? y.Value : null;
+                return y?.Value;
             }
         }
 
@@ -95,7 +95,7 @@ namespace CS.Http
 
         int IComparer<HttpParam>.Compare(HttpParam x, HttpParam y)
         {
-            return x.Name == y.Name ? string.Compare(x.Value, y.Value) : string.Compare(x.Name, y.Name);
+            return x.Name == y.Name ? String.CompareOrdinal(x.Value, y.Value) : String.CompareOrdinal(x.Name, y.Name);
         }
 
         #endregion

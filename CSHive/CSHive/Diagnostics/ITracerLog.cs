@@ -12,6 +12,7 @@ namespace CS.Diagnostics
     /// 实现该接口后进行注册到Tracer中
     /// </remarks>
     /// </summary>
+    [Obsolete("过期，请使用ITracer来实现新的实现")]
     public interface ITracerLog
     {
         /// <summary>

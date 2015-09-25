@@ -1,4 +1,6 @@
-﻿namespace CS.Http
+﻿using System;
+
+namespace CS.Http
 {
     /// <summary>
     /// Http的参数名及值
@@ -7,35 +9,32 @@
     /// </summary>
     public class HttpParam
     {
-        private readonly string _name;
-        private readonly string _value;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public HttpParam(string name, string value)
         {
-            _name = name;
-            _value = value;
+            Name = name;
+            Value = value;
         }
 
         /// <summary>
         /// 参数名
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-        }
+        public string Name { get; }
 
         /// <summary>
         /// 参数值
         /// </summary>
-        public string Value
-        {
-            get { return _value; }
-        }
+        public string Value { get; set; }
 
-        public override string ToString()
-        {
-            return !string.IsNullOrEmpty(Name) ? string.Format("{0}={1}", Name, Value) : string.Empty;
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => !string.IsNullOrEmpty(Name) ? $"{Name}={Value}" : string.Empty;
 
         /// <summary>
         /// 隐式转换，将UrlParamter隐式转换成形如：Name=Value形式的字符串

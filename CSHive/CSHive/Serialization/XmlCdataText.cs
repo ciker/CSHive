@@ -10,6 +10,10 @@ namespace CS.Serialization
         [XmlText]
         public string Text { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return Text;

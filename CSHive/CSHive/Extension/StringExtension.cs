@@ -10,7 +10,7 @@ namespace System
     /// </summary>
     public static class StringExtension
     {
-
+     
         /// <summary>
         /// 是否为无内容的串
         /// </summary>

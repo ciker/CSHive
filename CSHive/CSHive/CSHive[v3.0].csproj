@@ -49,9 +49,18 @@
   <ItemGroup>
     <Compile Include="Attribute\EditEnableAttribute.cs" />
     <Compile Include="Attribute\ValidationAttribute.cs" />
+    <Compile Include="Diagnostics\ConsoleTracer.cs" />
+    <Compile Include="Diagnostics\ITracer.cs" />
+    <Compile Include="Diagnostics\TracerManager.cs" />
     <Compile Include="Extension\CollectionExtension.cs" />
+    <Compile Include="Extension\NameValueCollectionExtension.cs" />
     <Compile Include="Extension\StringBuilderExtension.cs" />
-    <Compile Include="Serialization\CommandStyle.cs" />
+    <Compile Include="Http\HttpParamHelper.cs" />
+    <Compile Include="Http\HttpPostParams.cs" />
+    <Compile Include="Http\HttpUrlParams.cs" />
+    <Compile Include="Http\Param.cs" />
+    <Compile Include="Http\ParamBase.cs" />
+    <Compile Include="Http\ParamMethod.cs" />
     <Compile Include="Serialization\XmlCdataText.cs" />
     <Compile Include="Utils\AttributeHelper.cs" />
     <Compile Include="Attribute\EnumExtAttribute.cs" />

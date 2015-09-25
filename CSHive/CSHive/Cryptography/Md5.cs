@@ -39,7 +39,7 @@ namespace CS.Cryptography
         {
             var md5 = new MD5CryptoServiceProvider();
             var strRet = BitConverter.ToString(md5.ComputeHash(bytes));
-            return strRet.Replace("-", "");
+            return strRet.Replace("-", "").ToLower();
         }
 
         /// <summary>
