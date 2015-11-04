@@ -41,6 +41,34 @@ namespace CS.Serialization
             }
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class DataContractJsonExt
+    {
+        /// <summary>
+        /// 序列化成DataContractJson字符串
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string ToDataJson<T>(this T obj)
+        {
+            return DataContractJsonHelper.Serialize(obj);
+        }
+
+        /// <summary>
+        /// 把DataContractJson反序列化成实例
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static T FromDataJson<T>(this string str)
+        {
+            return DataContractJsonHelper.Deserialize<T>(str);
+        }
+    }
+
 
     [DataContract]
     public class DemoModel

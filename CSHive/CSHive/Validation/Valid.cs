@@ -204,6 +204,7 @@ namespace CS.Validation
         /// <returns></returns>
         public static bool CheckIDCard(string id)
         {
+            if (string.IsNullOrWhiteSpace(id)) return false;
             if (id.Length == 18) return CheckIDCard18(id);
             return id.Length == 15 && CheckIDCard15(id);
         }
@@ -221,7 +222,7 @@ namespace CS.Validation
             if (!long.TryParse(id.Remove(17), out n) || n < Math.Pow(10, 16) || !long.TryParse(id.Replace('x', '0').Replace('X', '0'), out n)) return false;//数字验证
 
             const string address = "11x22x35x44x53x12x23x36x45x54x13x31x37x46x61x14x32x41x50x62x15x33x42x51x63x21x34x43x52x64x65x71x81x82x91";
-            if (address.IndexOf(id.Remove(2)) == -1) return false;//省份验证
+            if (address.IndexOf(id.Remove(2), StringComparison.Ordinal) == -1) return false;//省份验证
 
             var birth = id.Substring(6, 8).Insert(6, "-").Insert(4, "-");
             DateTime time;
@@ -252,7 +253,7 @@ namespace CS.Validation
             if (!long.TryParse(id, out n) || n < Math.Pow(10, 14)) return false;//数字验证
 
             const string address = "11x22x35x44x53x12x23x36x45x54x13x31x37x46x61x14x32x41x50x62x15x33x42x51x63x21x34x43x52x64x65x71x81x82x91";
-            if (address.IndexOf(id.Remove(2)) == -1) return false;//省份验证
+            if (address.IndexOf(id.Remove(2), StringComparison.Ordinal) == -1) return false;//省份验证
 
             var birth = id.Substring(6, 6).Insert(4, "-").Insert(2, "-");
             DateTime time;

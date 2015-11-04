@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using CS.Diagnostics;
 
 namespace CS.Utils
 {
@@ -8,6 +12,44 @@ namespace CS.Utils
     /// </summary>
     public class TypeHelper
     {
+
+        /// <summary>
+        /// 返回某了父类下所有子类的实例
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static List<T> GetSubclassObjects<T>()
+        {
+            var types = GetSubclasses(typeof (T));
+            return types.Select(tp => (T) Activator.CreateInstance(tp)).Where(instance => instance != null).ToList();
+        }
+
+        /// <summary>
+        /// 返回某了父类下所有子类的类型<see cref="Type"/>集合
+        /// </summary>
+        /// <returns></returns>
+        public static List<Type> GetSubclasses(Type baseType)
+        {
+            var types = Assembly.GetAssembly(baseType).GetTypes().Where(x => x.IsSubclassOf(baseType)).ToList();
+            return types;
+            //try
+            //{
+            //    var types = Assembly.GetAssembly(baseType).GetTypes().Where(x => x.IsSubclassOf(baseType)).ToList();
+            //    return types;
+            //}
+            //catch (ReflectionTypeLoadException ex)
+            //{
+            //    foreach (var exception in ex.LoaderExceptions)
+            //    {
+            //        Tracer.Error("LoaderExceptions[]", ex);
+            //    }
+            //    Tracer.Error("InnerException", ex.InnerException);
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+        }
 
         /// <summary>
         /// 转换值为目标类型

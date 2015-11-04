@@ -14,6 +14,9 @@ namespace CS.Diagnostics
         /// </summary>
         public TraceLevel Level { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ConsoleTracer()
         {
             Level = TraceLevel.All;

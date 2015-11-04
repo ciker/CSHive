@@ -23,8 +23,9 @@ namespace CS.Http
     {
         /// <summary>
         ///     使用 HttpContext.Current 初始化 HttpParamHelper 对象
+        ///   默认只获取QueryString
         /// </summary>
-        public HttpParamHelper() : this(HttpContext.Current)
+        public HttpParamHelper() : this(HttpContext.Current,HttpParamNeedType.QueryString)
         {
         }
 

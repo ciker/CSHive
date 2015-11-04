@@ -113,6 +113,7 @@
     <Compile Include="Theory\GaussianRandom.cs" />
     <Compile Include="Utils\FileHeper.cs" />
     <Compile Include="Utils\GZipHelper.cs" />
+    <Compile Include="Utils\ReportHelper.cs" />
     <Compile Include="Utils\TypeHelper.cs" />
     <Compile Include="Validation\RegexLib.cs" />
     <Compile Include="Validation\Valid.cs" />
