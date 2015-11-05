@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
+using CS.Serialization;
 
 namespace CS.Storage
 {
@@ -48,7 +49,7 @@ namespace CS.Storage
         /// <returns>对象实例</returns>
         public static T Load<T>(string path)
         {
-            if (!File.Exists(path)) throw new FileNotFoundException(string.Format("{0} not exist.", path));
+            if (!File.Exists(path)) throw new FileNotFoundException($"{path} not exist.");
             using (var reader = new StreamReader(path))
             {
                 return (T)(new XmlSerializer(typeof(T))).Deserialize(reader);

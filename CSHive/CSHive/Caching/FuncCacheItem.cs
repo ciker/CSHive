@@ -5,6 +5,30 @@ namespace CS.Caching
 {
     /// <summary>
     /// 自动调用方法更新缓存项
+    /// <remarks>
+    /// 主要用于API调用，并且缓存一定时间
+    /// </remarks>
+    /// 
+    /// <example>
+    /// <code>
+    /// <![CDATA[
+    /// class TestCacheItem:FuncCacheItem<Json>
+    /// {
+    ///   //MockService.GetMockJson 返回Json实例的方法
+    ///    public TestCacheItem() : base(MockService.GetMockJson, null)
+    ///    {
+    ///    }
+    /// 
+    ///    //返回结果时更新过期时间
+    ///   protected override void UpdateExpires(Json json)
+    ///   {
+    ///        Tracer.Debug(json.Token);
+    ///       SetExpiresTime(json.ExpiresIn);
+    ///   }
+    /// }
+    /// ]]>
+    /// </code>
+    /// </example>
     /// </summary>
     public class FuncCacheItem<TV> : CacheItem<TV> where TV : class
     {
@@ -34,14 +58,22 @@ namespace CS.Caching
         {
             get
             {
-                if (FuncCallback == null) throw new NullReferenceException("Please use set FuncCacheItem.FuncCallback init.");
-                if (base.Item == null || Expired)
-                {
-                    base.Item = FuncCallback.Invoke();
-                }
+                if (FuncCallback == null)
+                    throw new NullReferenceException("Please use set FuncCacheItem.FuncCallback init.");
+                if (base.Item != null && !Expired) return base.Item;
+                base.Item = FuncCallback.Invoke();
+                UpdateExpires(base.Item);
                 return base.Item;
             }
         }
 
+        /// <summary>
+        /// 更新过期时间
+        /// <remarks>对时间有要求的必须重写该方法，以更新过期时间</remarks>
+        /// </summary>
+        /// <param name="item"></param>
+        protected virtual void UpdateExpires(TV item)
+        {
+        }
     }
 }

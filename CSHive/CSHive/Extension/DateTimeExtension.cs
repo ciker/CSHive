@@ -7,6 +7,28 @@
     {
 
 
+
+
+        /// <summary>
+        /// 获取本月的最后一天
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static DateTime ToMonthEndDate(this DateTime dt)
+        {
+            return dt.ToMonthBeginDate().AddMonths(1).AddDays(-1);
+        }
+
+        /// <summary>
+        /// 获取本日期的第一天
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static DateTime ToMonthBeginDate(this DateTime dt)
+        {
+            return  new DateTime(dt.Year, dt.Month, 1);
+        }
+
         /// <summary>
         /// 范围约束(闭区间)
         /// </summary>

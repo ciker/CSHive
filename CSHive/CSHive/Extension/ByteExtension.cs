@@ -10,7 +10,29 @@ namespace System
     public static class ByteExtension
     {
 
-	
+
+        ///// <summary>
+        ///// 将C#中的Byte转为Java中的Byte
+        ///// <remarks>
+        ///// 原理很简单，就是当 byte 小于 128 时其值保持不变，大于等于 128 时就将其减去 256。BUG：还有字节序问题
+        ///// </remarks>
+        ///// </summary>
+        ///// <param name="bytes"></param>
+        ///// <returns></returns>
+        //public static sbyte[] ToJavaBytes(this byte[] bytes)
+        //{
+        //    var arrResult = new sbyte[bytes.Length];
+        //    for (var i = 0; i < bytes.Length; i++)
+        //    {
+        //        if (bytes[i] > 127)
+        //            arrResult[i] = (sbyte)(bytes[i] - 256);
+        //        else
+        //            arrResult[i] = (sbyte)bytes[i];
+        //    }
+        //    return arrResult;
+        //}
+
+
         /// <summary>
         /// 从原字节数组中返回新的数组
         /// </summary>
@@ -142,6 +164,29 @@ namespace System
         {
             var list = new List<string>(bytes.Length);
             list.AddRange(bytes.Select(b => Convert.ToString(b, 2).PadLeft(8, '0')));
+            return string.Join(dashes, list.ToArray());
+        }
+
+        /// <summary>
+        /// 返回2进制字符串
+        /// </summary>
+        /// <param name="sbs"></param>
+        /// <returns></returns>
+        public static string ToBinString(this sbyte[] sbs)
+        {
+            return sbs.ToBinString("-");
+        }
+
+        /// <summary>
+        /// 返回2进制字符串
+        /// </summary>
+        /// <param name="sbs"></param>
+        /// <param name="dashes"></param>
+        /// <returns></returns>
+        public static string ToBinString(this sbyte[] sbs, string dashes)
+        {
+            var list = new List<string>(sbs.Length);
+            list.AddRange(sbs.Select(b => Convert.ToString(b, 2).PadLeft(8, '0')));
             return string.Join(dashes, list.ToArray());
         }
 

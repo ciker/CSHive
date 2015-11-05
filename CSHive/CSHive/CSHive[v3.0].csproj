@@ -47,7 +47,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attribute\EditEnableAttribute.cs" />
+    <Compile Include="Attribute\ValidationAttribute.cs" />
+    <Compile Include="Diagnostics\ConsoleTracer.cs" />
+    <Compile Include="Diagnostics\ITracer.cs" />
+    <Compile Include="Diagnostics\TracerManager.cs" />
+    <Compile Include="Email\AttachmentEncoding.cs" />
+    <Compile Include="Email\Format.cs" />
+    <Compile Include="Email\GmailSender.cs" />
+    <Compile Include="Email\IEmailSender.cs" />
+    <Compile Include="Email\IRichMessageEmailSender.cs" />
+    <Compile Include="Email\Message.cs" />
+    <Compile Include="Email\MessageAttachment.cs" />
+    <Compile Include="Email\MessageAttachmentList.cs" />
+    <Compile Include="Email\MockSender.cs" />
+    <Compile Include="Email\SmtpSender.cs" />
+    <Compile Include="Extension\CollectionExtension.cs" />
+    <Compile Include="Extension\NameValueCollectionExtension.cs" />
+    <Compile Include="Extension\StringBuilderExtension.cs" />
+    <Compile Include="Http\HttpParamHelper.cs" />
+    <Compile Include="Http\HttpPostParams.cs" />
+    <Compile Include="Http\HttpUrlParams.cs" />
+    <Compile Include="Http\Param.cs" />
+    <Compile Include="Http\ParamBase.cs" />
+    <Compile Include="Http\ParamMethod.cs" />
+    <Compile Include="Serialization\XmlCdataText.cs" />
+    <Compile Include="Utils\AttributeHelper.cs" />
+    <Compile Include="Attribute\EnumExtAttribute.cs" />
     <Compile Include="Attribute\IgnoreAttribute.cs" />
+    <Compile Include="Attribute\TextAttribute.cs" />
     <Compile Include="Caching\CacheItem.cs" />
     <Compile Include="Caching\Cacher.cs" />
     <Compile Include="Caching\FuncCacheItem.cs" />
@@ -80,6 +108,7 @@
     <Compile Include="Http\AsyncHttp.cs" />
     <Compile Include="Http\HttpBase.cs" />
     <Compile Include="Http\HttpHelper.cs" />
+    <Compile Include="Http\HttpParam.cs" />
     <Compile Include="Http\HttpParams.cs" />
     <Compile Include="Http\SyncHttp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,9 +119,18 @@
     <Compile Include="Storage\BinaryStorage.cs" />
     <Compile Include="Storage\StringStorage.cs" />
     <Compile Include="Storage\XmlStorage.cs" />
+    <Compile Include="Utils\App.cs" />
     <Compile Include="Theory\GaussianRandom.cs" />
+    <Compile Include="Utils\FileHeper.cs" />
+    <Compile Include="Utils\GZipHelper.cs" />
+    <Compile Include="Utils\ReportHelper.cs" />
+    <Compile Include="Utils\TypeHelper.cs" />
     <Compile Include="Validation\RegexLib.cs" />
     <Compile Include="Validation\Valid.cs" />
+    <Compile Include="Validation\Validator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

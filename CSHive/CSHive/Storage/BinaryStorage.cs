@@ -37,7 +37,7 @@ namespace CS.Storage
                 }
                 catch (SerializationException e)
                 {
-                    Tracer.Debug("Failed to serialize. Reason: {0}",e.Message);
+                    Tracer.DebugFormat("Failed to serialize. Reason: {0}",e.Message);
                     throw;
                 }
                 finally
@@ -63,7 +63,7 @@ namespace CS.Storage
             }
             catch (SerializationException e)
             {
-                Tracer.Debug("Failed to deserialize. Reason: {0}" , e.Message);
+                Tracer.DebugFormat("Failed to deserialize. Reason: {0}" , e.Message);
                 throw;
             }
             finally

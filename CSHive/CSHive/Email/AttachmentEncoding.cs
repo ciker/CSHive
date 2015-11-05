@@ -1,0 +1,11 @@
+namespace CS.Email
+{
+    /// <summary>
+    /// ¸½¼þ±àÂë
+    /// </summary>
+    public enum AttachmentEncoding
+    {
+        Base64,
+        UUEncode
+    }
+}

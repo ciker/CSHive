@@ -26,6 +26,9 @@ namespace CS.Serialization
 
         /// <summary>
         /// XML String 反序列化成对象
+        /// <remarks>
+        /// Note:Xml序列化时是大小区分的
+        /// </remarks>
         /// </summary>
         public static T Deserialize<T>(string xmlString)
         {
