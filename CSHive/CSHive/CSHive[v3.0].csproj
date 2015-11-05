@@ -52,6 +52,16 @@
     <Compile Include="Diagnostics\ConsoleTracer.cs" />
     <Compile Include="Diagnostics\ITracer.cs" />
     <Compile Include="Diagnostics\TracerManager.cs" />
+    <Compile Include="Email\AttachmentEncoding.cs" />
+    <Compile Include="Email\Format.cs" />
+    <Compile Include="Email\GmailSender.cs" />
+    <Compile Include="Email\IEmailSender.cs" />
+    <Compile Include="Email\IRichMessageEmailSender.cs" />
+    <Compile Include="Email\Message.cs" />
+    <Compile Include="Email\MessageAttachment.cs" />
+    <Compile Include="Email\MessageAttachmentList.cs" />
+    <Compile Include="Email\MockSender.cs" />
+    <Compile Include="Email\SmtpSender.cs" />
     <Compile Include="Extension\CollectionExtension.cs" />
     <Compile Include="Extension\NameValueCollectionExtension.cs" />
     <Compile Include="Extension\StringBuilderExtension.cs" />

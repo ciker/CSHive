@@ -60,18 +60,18 @@ namespace CS.Attribute
         /// <returns></returns>
         public static List<EnumInfo> GetItems(this Type type)
         {
-            var list = new List<EnumOrderInfo>();
+            var list = new List<EnumInfo>();
             if (type.IsEnum)
             {
                 var fields = type.GetFields(BindingFlags.Static | BindingFlags.Public);
-                list = (from fi in fields select fi.GetValue(null) into value let name = Enum.GetName(type, value) where name != null select new EnumOrderInfo(name, (int)value)).ToList();
+                list = (from fi in fields select fi.GetValue(null) into value let name = Enum.GetName(type, value) where name != null select new EnumInfo(name, (int)value)).ToList();
                 var mbs = type.GetMembers();
                 foreach (var info in mbs)
                 {
                     var attr = System.Attribute.GetCustomAttribute(info, typeof(EnumExtAttribute)) as EnumExtAttribute;
                     if (attr == null) continue;
                     //Console.WriteLine("{0}",  info.Name);
-                    var item = list.First(x => x.Name == info.Name);
+                    var item = list.FirstOrDefault(x => x.Name == info.Name);
                     if (item == null) continue;
                     item.NativeName = attr.NativeName;
                     item.BgColor = attr.BgColor;
@@ -81,7 +81,33 @@ namespace CS.Attribute
             }
             return list.Where(x => !x.Ignore).OrderBy(x => x.Order).Cast<EnumInfo>().ToList();
         }
+
+        /// <summary>
+        /// 返回该枚举的<see cref="EnumInfo"/>信息
+        /// </summary>
+        /// <param name="en"></param>
+        /// <returns></returns>
+        public static EnumInfo ToEnumInfo(this Enum en)
+        {
+            var items = en.GetType().GetItems();
+            return en.ToEnumInfo(items);
+        }
+
+        /// <summary>
+        /// 返回该枚举的<see cref="EnumInfo"/>信息
+        /// </summary>
+        /// <param name="en"></param>
+        /// <param name="items">可以是缓存的集合，提高效率</param>
+        /// <returns></returns>
+        public static EnumInfo ToEnumInfo(this Enum en, List<EnumInfo> items)
+        {
+            var item = items?.FirstOrDefault(x => x.Name == en.ToString());
+            return item;
+        }
+
     }
+
+
 
     /// <summary>
     /// 枚举信息
@@ -130,20 +156,26 @@ namespace CS.Attribute
         /// </summary>
         public int Value { get; set; }
 
-    }
-
-    /// <summary>
-    /// 带排序性质的枚举信息
-    /// </summary>
-    public class EnumOrderInfo : EnumInfo
-    {
-        public EnumOrderInfo(string name, int value)
-            : base(name, value)
-        {
-        }
-
+        /// <summary>
+        /// 排序属性
+        /// </summary>
         public int Order { get; set; }
+
+
     }
+
+    ///// <summary>
+    ///// 带排序性质的枚举信息
+    ///// </summary>
+    //public class EnumOrderInfo : EnumInfo
+    //{
+    //    public EnumOrderInfo(string name, int value)
+    //        : base(name, value)
+    //    {
+    //    }
+
+    //    public int Order { get; set; }
+    //}
 
     public static class EnumInfoExt
     {

@@ -14,9 +14,9 @@
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static DateTime ToThisMonthEndDate(this DateTime dt)
+        public static DateTime ToMonthEndDate(this DateTime dt)
         {
-            return dt.ToThisMonthBeginDate().AddMonths(1).AddDays(-1);
+            return dt.ToMonthBeginDate().AddMonths(1).AddDays(-1);
         }
 
         /// <summary>
@@ -24,7 +24,7 @@
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static DateTime ToThisMonthBeginDate(this DateTime dt)
+        public static DateTime ToMonthBeginDate(this DateTime dt)
         {
             return  new DateTime(dt.Year, dt.Month, 1);
         }
