@@ -15,14 +15,14 @@ namespace CS.Email
             EnableSsl = true;
         }
 
-        protected override void ConfigureSender(Message message)
+        protected override void ConfigureSender(EmailMessage emailMessage)
         {
             if (!HasCredentials)
             {
                 throw new Exception("Gmail Sender requires account email address and password for authentication");
             }
 
-            base.ConfigureSender(message);
+            base.ConfigureSender(emailMessage);
         }
     }
 }

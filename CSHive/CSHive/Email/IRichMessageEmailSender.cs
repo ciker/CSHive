@@ -6,15 +6,15 @@ namespace CS.Email
     public interface IRichMessageEmailSender : IEmailSender
     {
         /// <summary>
-        ///     Sends a message.
+        ///     Sends a EmailMessage.
         /// </summary>
-        /// <param name="message">Message instance</param>
-        void Send(Message message);
+        /// <param name="emailMessage">EmailMessage instance</param>
+        void Send(EmailMessage emailMessage);
 
         /// <summary>
-        ///     Sends multiple messages.
+        ///     Sends multiple emailMessages.
         /// </summary>
-        /// <param name="messages">Array of messages</param>
-        void Send(Message[] messages);
+        /// <param name="emailMessages">Array of emailMessages</param>
+        void Send(EmailMessage[] emailMessages);
     }
 }

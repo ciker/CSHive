@@ -57,7 +57,7 @@
     <Compile Include="Email\GmailSender.cs" />
     <Compile Include="Email\IEmailSender.cs" />
     <Compile Include="Email\IRichMessageEmailSender.cs" />
-    <Compile Include="Email\Message.cs" />
+    <Compile Include="Email\EmailMessage.cs" />
     <Compile Include="Email\MessageAttachment.cs" />
     <Compile Include="Email\MessageAttachmentList.cs" />
     <Compile Include="Email\MockSender.cs" />

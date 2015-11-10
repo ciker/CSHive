@@ -98,13 +98,13 @@ namespace CS.Email
         protected bool HasCredentials => _credentials.UserName != null && _credentials.Password != null ? true : false;
 
         /// <summary>
-        ///     Sends a message.
+        ///     Sends a EmailMessage.
         /// </summary>
         /// <exception cref="ArgumentNullException">If any of the parameters is null</exception>
         /// <param name="from">From field</param>
         /// <param name="to">To field</param>
         /// <param name="subject">e-mail's subject</param>
-        /// <param name="messageText">message's body</param>
+        /// <param name="messageText">EmailMessage's body</param>
         public void Send(string from, string to, string subject, string messageText)
         {
             if (from == null) throw new ArgumentNullException(nameof(@from));
@@ -112,31 +112,31 @@ namespace CS.Email
             if (subject == null) throw new ArgumentNullException(nameof(subject));
             if (messageText == null) throw new ArgumentNullException(nameof(messageText));
 
-            Send(new Message(from, to, subject, messageText));
+            Send(new EmailMessage(from, to, subject, messageText));
         }
 
         /// <summary>
-        ///     Sends a message.
+        ///     Sends a EmailMessage.
         /// <remarks>
         /// TODO:异步发送时无法发送成功
         /// </remarks>
         /// </summary>
-        /// <exception cref="ArgumentNullException">If the message is null</exception>
-        /// <param name="message">Message instance</param>
-        public void Send(Message message)
+        /// <exception cref="ArgumentNullException">If the EmailMessage is null</exception>
+        /// <param name="emailMessage">EmailMessage instance</param>
+        public void Send(EmailMessage emailMessage)
         {
-            if (message == null) throw new ArgumentNullException(nameof(message));
+            if (emailMessage == null) throw new ArgumentNullException(nameof(emailMessage));
 
-            ConfigureSender(message);
+            ConfigureSender(emailMessage);
 
             if (AsyncSend)
             {
                 // The MailMessage must be diposed after sending the email.
                 // The code creates a delegate for deleting the mail and adds
                 // it to the smtpClient.
-                // After the mail is sent, the message is disposed and the
+                // After the mail is sent, the EmailMessage is disposed and the
                 // eventHandler removed from the smtpClient.
-                var msg = CreateMailMessage(message);
+                var msg = CreateMailMessage(emailMessage);
                 //var msgGuid = new Guid();//ERROR
                 var msgGuid = Guid.NewGuid();
                 SendCompletedEventHandler sceh = null;
@@ -152,7 +152,7 @@ namespace CS.Email
             }
             else
             {
-                using (var msg = CreateMailMessage(message))
+                using (var msg = CreateMailMessage(emailMessage))
                 {
                     _smtpClient.Send(msg);
                 }
@@ -162,65 +162,65 @@ namespace CS.Email
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="messages"></param>
-        public void Send(Message[] messages)
+        /// <param name="emailMessages"></param>
+        public void Send(EmailMessage[] emailMessages)
         {
-            foreach (var message in messages)
+            foreach (var message in emailMessages)
             {
                 Send(message);
             }
         }
 
         /// <summary>
-        ///     Converts a message from Castle.Components.Common.EmailSender.Message  type
+        ///     Converts a EmailMessage from Castle.Components.Common.EmailSender.EmailMessage  type
         ///     to System.Net.Mail.MailMessage
         /// </summary>
-        /// <param name="message">The message to convert.</param>
-        /// <returns>The converted message .</returns>
-        private static MailMessage CreateMailMessage(Message message)
+        /// <param name="emailMessage">The EmailMessage to convert.</param>
+        /// <returns>The converted EmailMessage .</returns>
+        private static MailMessage CreateMailMessage(EmailMessage emailMessage)
         {
-            var mailMessage = new MailMessage(message.From, message.To.Replace(';', ','));
+            var mailMessage = new MailMessage(emailMessage.From, emailMessage.To.Replace(';', ','));
 
-            if (!string.IsNullOrEmpty(message.Cc))
+            if (!string.IsNullOrEmpty(emailMessage.Cc))
             {
-                mailMessage.CC.Add(message.Cc);
+                mailMessage.CC.Add(emailMessage.Cc);
             }
 
-            if (!string.IsNullOrEmpty(message.Bcc))
+            if (!string.IsNullOrEmpty(emailMessage.Bcc))
             {
-                mailMessage.Bcc.Add(message.Bcc);
+                mailMessage.Bcc.Add(emailMessage.Bcc);
             }
 
-            mailMessage.Subject = message.Subject;
-            mailMessage.Body = message.Body;
-            mailMessage.BodyEncoding = message.Encoding;
-            mailMessage.IsBodyHtml = (message.Format == Format.Html);
-            mailMessage.Priority = message.Priority;
-            if (message.ReplyTos != null)
+            mailMessage.Subject = emailMessage.Subject;
+            mailMessage.Body = emailMessage.Body;
+            mailMessage.BodyEncoding = emailMessage.Encoding;
+            mailMessage.IsBodyHtml = (emailMessage.Format == Format.Html);
+            mailMessage.Priority = emailMessage.Priority;
+            if (emailMessage.ReplyTos != null)
             {
-                foreach (var replyTo in message.ReplyTos)
+                foreach (var replyTo in emailMessage.ReplyTos)
                 {
                     mailMessage.ReplyToList.Add(replyTo);
                 }
             }
 
-            foreach (DictionaryEntry entry in message.Headers)
+            foreach (DictionaryEntry entry in emailMessage.Headers)
             {
                 mailMessage.Headers.Add((string) entry.Key, (string) entry.Value);
             }
 
-            foreach (var mailAttach in message.Attachments.Select(attachment => attachment.Stream != null
+            foreach (var mailAttach in emailMessage.Attachments.Select(attachment => attachment.Stream != null
                 ? new Attachment(attachment.Stream, attachment.FileName, attachment.MediaType)
                 : new Attachment(attachment.FileName, attachment.MediaType)))
             {
                 mailMessage.Attachments.Add(mailAttach);
             }
 
-            if (message.Resources == null || message.Resources.Count <= 0) return mailMessage;
-            var htmlView = AlternateView.CreateAlternateViewFromString(message.Body, message.Encoding, "text/html");
-            foreach (var id in message.Resources.Keys)
+            if (emailMessage.Resources == null || emailMessage.Resources.Count <= 0) return mailMessage;
+            var htmlView = AlternateView.CreateAlternateViewFromString(emailMessage.Body, emailMessage.Encoding, "text/html");
+            foreach (var id in emailMessage.Resources.Keys)
             {
-                var r = message.Resources[id];
+                var r = emailMessage.Resources[id];
                 r.ContentId = id;
                 if (r.ContentStream != null)
                 {
@@ -232,12 +232,12 @@ namespace CS.Email
         }
 
         /// <summary>
-        ///     Configures the message or the sender
+        ///     Configures the EmailMessage or the sender
         ///     with port information and eventual credential
         ///     informed
         /// </summary>
-        /// <param name="message">Message instance</param>
-        protected virtual void ConfigureSender(Message message)
+        /// <param name="emailMessage">EmailMessage instance</param>
+        protected virtual void ConfigureSender(EmailMessage emailMessage)
         {
             if (!_configured)
             {

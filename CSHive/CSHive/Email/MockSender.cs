@@ -6,11 +6,11 @@ namespace CS.Email
         {
         }
 
-        public virtual void Send(Message message)
+        public virtual void Send(EmailMessage emailMessage)
         {
         }
 
-        public virtual void Send(Message[] messages)
+        public virtual void Send(EmailMessage[] emailMessages)
         {
         }
     }
