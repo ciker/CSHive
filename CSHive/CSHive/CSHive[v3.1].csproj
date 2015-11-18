@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attribute\EditEnableAttribute.cs" />
+    <Compile Include="Attribute\EnumInfo.cs" />
     <Compile Include="Attribute\ValidationAttribute.cs" />
     <Compile Include="Diagnostics\ConsoleTracer.cs" />
     <Compile Include="Diagnostics\ITracer.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Email\MockSender.cs" />
     <Compile Include="Email\SmtpSender.cs" />
     <Compile Include="Extension\CollectionExtension.cs" />
+    <Compile Include="Extension\HtmlExtension.cs" />
     <Compile Include="Extension\NameValueCollectionExtension.cs" />
     <Compile Include="Extension\StringBuilderExtension.cs" />
     <Compile Include="Http\HttpParamHelper.cs" />
