@@ -15,7 +15,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace CS.Data.Storage
+namespace CS.Storage
 {
     /// <summary>
     ///   对象二进制持久化

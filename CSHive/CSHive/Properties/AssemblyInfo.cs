@@ -43,7 +43,7 @@ using System.Runtime.InteropServices;
 V3.1
 ----2015-11-05--------------
 . 加入Email发送功能
-
+. EnumExt扩展加上Order属性，以便对枚举结果进行排序
 
 V3.0
 

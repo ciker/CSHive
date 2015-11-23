@@ -79,6 +79,19 @@ namespace CS.Http
         #region 异步处理 Async
 
         /// <summary>
+        /// 异步GET
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="callback"></param>
+        /// <returns></returns>
+        public static bool AsyncGet(string url, AsyncHttpCallback callback)
+        {
+            var sync = new AsyncHttp();
+            return sync.HttpGet(url, callback);
+        }
+
+
+        /// <summary>
         /// 异步：Get方法请求并返回消息 ,超时可配
         /// </summary>
         /// <param name="url">包含查询字符串的Url地址</param>

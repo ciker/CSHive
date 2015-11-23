@@ -10,7 +10,19 @@ namespace System
     /// </summary>
     public static class StringExtension
     {
-     
+
+
+        /// <summary>
+        /// 当值为空时返回为空，否则返回通过template格式化后的值
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static string FormatWhenNotNull(this string format, params object[] values)
+        {
+            return values.Length == 0 ? null : string.Format(format, values);
+        }
+
         /// <summary>
         /// 是否为无内容的串
         /// </summary>

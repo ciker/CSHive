@@ -8,13 +8,10 @@
 //------------------------------------------------------------------------------
 #endregion
 
-#if Net4
-
-using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Json;
 
-namespace CS.Data.Storage
+namespace CS.Storage
 {
     /// <summary>
     ///   
@@ -68,4 +65,4 @@ namespace CS.Data.Storage
         }
     }
 }
-#endif
+

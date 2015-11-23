@@ -1,7 +1,7 @@
 namespace CS.Email
 {
     /// <summary>
-    ///     Message formats
+    ///     EmailMessage formats
     /// </summary>
     public enum Format
     {

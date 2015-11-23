@@ -9,23 +9,23 @@ namespace CS.Email
     /// <summary>
     ///     Abstracts an e-mail message
     /// </summary>
-    public class Message
+    public class EmailMessage
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Message" /> class.
+        ///     Initializes a new instance of the <see cref="EmailMessage" /> class.
         /// </summary>
-        public Message()
+        public EmailMessage()
         {
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Message" /> class.
+        ///     Initializes a new instance of the <see cref="EmailMessage" /> class.
         /// </summary>
         /// <param name="from">From header.</param>
         /// <param name="to">To header.</param>
         /// <param name="subject">The subject header.</param>
         /// <param name="body">The message body.</param>
-        public Message(string from, string to, string subject, string body)
+        public EmailMessage(string from, string to, string subject, string body)
         {
             To = to;
             From = from;

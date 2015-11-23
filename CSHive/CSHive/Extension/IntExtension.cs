@@ -6,6 +6,26 @@
     public static class IntExtension
     {
 
+
+
+        #region decimal 至 int的转换
+
+        /// <summary>
+        /// 四舍五入转为int
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static int ToInt(this decimal val)
+        {
+            return (int)Math.Round(val);
+        }
+
+
+        #endregion
+
+
+
+
         /// <summary>
         /// 当两个给出的int值相同时返回trueStr，否则返回null
         /// </summary>
