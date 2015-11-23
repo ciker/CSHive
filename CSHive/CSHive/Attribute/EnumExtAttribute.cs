@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
@@ -21,41 +20,27 @@ namespace CS.Attribute
         {
         }
 
-
-        ///// <summary>
-        ///// 初始化
-        ///// </summary>
-        ///// <param name="nativeName"></param>
-        ///// <param name="bgColor">32位颜色值的Int表现形式</param>
-        //public EnumExtAttribute(string nativeName, int bgColor):base(nativeName)
-        //{
-        //    BgColor = bgColor;
-        //}
-
         /// <summary>
         /// 是否忽略当前项
         /// </summary>
         public bool Ignore { get; set; }
-        ///// <summary>
-        ///// 标识色
-        ///// </summary>
-        //public int BgColor { get; set; }
-        ///// <summary>
-        ///// 排序
-        ///// <remarks>
-        ///// 默认等于Value值
-        ///// </remarks>
-        ///// </summary>
-        //public int Order { get; set; }
-
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class EnumOrderExtAttribute : EnumExtAttribute
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nativeName"></param>
         public EnumOrderExtAttribute(string nativeName) : base(nativeName)
         {
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public EnumOrderExtAttribute(string nativeName, int order) : base(nativeName)
         {
             Order = order;

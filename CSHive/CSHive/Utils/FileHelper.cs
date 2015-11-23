@@ -3,14 +3,14 @@
     /// <summary>
     /// 文件辅助类
     /// </summary>
-    public class FileHeper
+    public class FileHelper
     {
         /// <summary>
-        /// 返回文件的全路径
+        /// 返回文件或目录的全路径
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static string GetFilePath(string fileName)
+        public static string GetFullPath(string fileName)
         {
             return App.CombinePath(fileName);
         }

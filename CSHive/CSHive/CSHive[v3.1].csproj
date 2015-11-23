@@ -50,6 +50,8 @@
     <Compile Include="Attribute\EditEnableAttribute.cs" />
     <Compile Include="Attribute\EnumInfo.cs" />
     <Compile Include="Attribute\ValidationAttribute.cs" />
+    <Compile Include="Storage\FileStorage.cs" />
+    <Compile Include="Storage\JsonStorage.cs" />
     <Compile Include="Diagnostics\ConsoleTracer.cs" />
     <Compile Include="Diagnostics\ITracer.cs" />
     <Compile Include="Diagnostics\TracerManager.cs" />
@@ -123,7 +125,7 @@
     <Compile Include="Storage\XmlStorage.cs" />
     <Compile Include="Utils\App.cs" />
     <Compile Include="Theory\GaussianRandom.cs" />
-    <Compile Include="Utils\FileHeper.cs" />
+    <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="Utils\GZipHelper.cs" />
     <Compile Include="Utils\ReportHelper.cs" />
     <Compile Include="Utils\TypeHelper.cs" />

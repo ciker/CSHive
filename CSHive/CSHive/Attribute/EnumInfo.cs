@@ -42,26 +42,6 @@ namespace CS.Attribute
     /// </summary>
     public class EnumInfo : IEnumInfo
     {
-        //public EnumInfo()
-        //{
-        //}
-
-        //public EnumInfo(string name)
-        //    : this(name, name, 0)
-        //{
-        //}
-
-        //public EnumInfo(string name, int value)
-        //    : this(name, name, value)
-        //{
-        //}
-
-        //public EnumInfo(string nativeName, string name, int value)
-        //{
-        //    Name = name;
-        //    Value = value ;
-        //    NativeName = nativeName;
-        //}
 
         public bool Ignore { get; set; }
        
@@ -86,15 +66,6 @@ namespace CS.Attribute
     /// </summary>
     public class EnumOrderInfo : EnumInfo
     {
-        //public EnumOrderInfo()
-        //{
-        //}
-
-        //public EnumOrderInfo(string name, int value)
-        //    : base(name, value)
-        //{
-        //}
-
         /// <summary>
         /// 排序属性
         /// </summary>
