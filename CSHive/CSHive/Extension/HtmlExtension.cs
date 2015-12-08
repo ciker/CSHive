@@ -26,7 +26,16 @@
         {
             return string.IsNullOrWhiteSpace(value) ? null : $"{key}=\"{value}\"";
         }
-
-
+        /// <summary>
+        /// 根据表达式结果设定属性值
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="express"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string SetProperty(this  bool express, string key, string value)
+        {
+            return express ? key.SetProperty(value) : null;
+        }
     }
 }
