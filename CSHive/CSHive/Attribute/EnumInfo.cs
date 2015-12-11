@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -6,7 +7,7 @@ namespace CS.Attribute
 {
     /// <summary>
     /// 针对枚举扩展的实体信息
-    /// </summary>
+    /// </summary>    
     public interface IEnumInfo
     {
         /// <summary>
@@ -40,6 +41,7 @@ namespace CS.Attribute
     /// <summary>
     /// 枚举信息
     /// </summary>
+    [Serializable]
     public class EnumInfo : IEnumInfo
     {
 

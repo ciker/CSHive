@@ -1,10 +1,12 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace CS.Serialization
 {
     /// <summary>
     /// CDATA XML数据
     /// </summary>
+    [Serializable]
     public class XmlCdataText
     {
         [XmlText]
