@@ -89,6 +89,17 @@ namespace System
         }
 
         /// <summary>
+        /// 将某值转为对应的枚举的值
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="enumType"></param>
+        /// <returns></returns>
+        public static int ToEnum(this string value, Type enumType)
+        {
+            return (int)Enum.Parse(enumType, value, true);
+        }
+
+        /// <summary>
         /// 将字符串转换为 枚举
         /// <remarks>
         /// 如果是数字字符串时，枚举转换失败时输出原输入的字符串。

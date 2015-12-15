@@ -70,6 +70,26 @@ namespace CS.Http
             }
         }
 
+
+        /// <summary>
+        /// 有则改之，无则加之
+        /// <remarks>链式</remarks>
+        /// </summary>
+        /// <param name="paramName"></param>
+        /// <param name="value"></param>
+        public HttpParams SetValue(string paramName, object value)
+        {
+            var y = Find(x => x.Name == paramName);
+            //var y = this.FirstOrDefault(x => x.Name == paramName);
+            if (y == null)
+                Add(new HttpParam(paramName, value.ToString()));
+            else
+            {
+                y.Value = value.ToString();
+            }
+            return this;
+        }
+
     }
 
     #endregion

@@ -22,8 +22,9 @@ namespace CS.Attribute
 
         /// <summary>
         /// 属性对应的值（必须为Int类型，暂不支持其它类型）
+        /// <remarks>为了兼容字符串与数值这儿为object类型</remarks>
         /// </summary>
-        int Value { get; set; }
+        object Value { get; set; }
 
         /// <summary>
         /// 本地化显示的名称
@@ -49,7 +50,7 @@ namespace CS.Attribute
        
         public string Name { get; set; }
 
-        public int Value { get; set; }
+        public object Value { get; set; }
         
         public string NativeName { get; set; }
         /// <summary>
@@ -95,10 +96,11 @@ namespace CS.Attribute
         /// <param name="ol"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string GetName(this List<EnumInfo> ol, int value)
+        public static string GetName(this List<EnumInfo> ol, object value)
         {
             var item = ol.FirstOrDefault(x => x.Value == value);
-            return item == null ? value.ToString(CultureInfo.InvariantCulture) : item.Name;
+            //return item == null ? value.ToString(CultureInfo.InvariantCulture) : item.Name;
+            return item == null ? value?.ToString() : item.Name;
         }
 
         /// <summary>
@@ -107,10 +109,11 @@ namespace CS.Attribute
         /// <param name="ol"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string GetNativeNameName(this List<EnumInfo> ol, int value)
+        public static string GetNativeNameName(this List<EnumInfo> ol, object value)
         {
             var item = ol.FirstOrDefault(x => x.Value == value);
-            return item == null ? value.ToString(CultureInfo.InvariantCulture) : item.NativeName;
+            //return item == null ? value.ToString(CultureInfo.InvariantCulture) : item.NativeName;
+            return item == null ? value?.ToString() : item.NativeName;
         }
 
         ///// <summary>

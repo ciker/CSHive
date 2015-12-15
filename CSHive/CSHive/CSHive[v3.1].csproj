@@ -50,6 +50,7 @@
     <Compile Include="Attribute\EditEnableAttribute.cs" />
     <Compile Include="Attribute\EnumInfo.cs" />
     <Compile Include="Attribute\ValidationAttribute.cs" />
+    <Compile Include="Extension\HexStringExtension.cs" />
     <Compile Include="Storage\FileStorage.cs" />
     <Compile Include="Storage\JsonStorage.cs" />
     <Compile Include="Diagnostics\ConsoleTracer.cs" />
