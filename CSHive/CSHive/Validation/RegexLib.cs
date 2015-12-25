@@ -39,17 +39,22 @@ namespace CS.Validation
         public const string DESCRIPTION = @"[\sA-Za-z0-9\s]{5,200}|[\s\u4e00-\u9fa5\s][\s\u4e00-\u9fa5A-Za-z0-9\s]{1,100}";
 
         /// <summary>
-        /// 标准用户的正则表达式 英文开头3-16 字符, 中文开头 2-12 字符
+        /// 标准用户的正则表达式 英文开头3-20 字符, 中文开头 2-12 字符
         /// <remarks>
         /// Note：utf-8编码的中文一个算2个长度
         /// </remarks>
         /// </summary>
-        public const string NICKNAME = "^[a-z][A-Za-z0-9]{2,16}$|^[\u4e00-\u9fa5][\u4e00-\u9fa5A-Za-z0-9]{1,11}$";
+        public const string NICKNAME = "^[a-z][A-Za-z0-9]{2,20}$|^[\u4e00-\u9fa5][\u4e00-\u9fa5A-Za-z0-9]{1,11}$";
 
         /// <summary>
         /// 标准密码的正则表示式 8-32 字符
         /// </summary>
         public const string PASSWORD = @"^\S{8,32}$";
+
+        /// <summary>
+        /// 密码中必须包含字母、数字、特称字符，至少8个字符，最多32个字符
+        /// </summary>
+        public const string STRICTPASSWORD = @"(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,32}";
 
         /// <summary>
         /// 标准 Email 的正则表达式

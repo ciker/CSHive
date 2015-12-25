@@ -111,7 +111,7 @@ namespace CS.Attribute
         /// <returns></returns>
         public static string GetNativeNameName(this List<EnumInfo> ol, object value)
         {
-            var item = ol.FirstOrDefault(x => x.Value == value);
+            var item = ol.FirstOrDefault(x => x.Value.Equals(value));
             //return item == null ? value.ToString(CultureInfo.InvariantCulture) : item.NativeName;
             return item == null ? value?.ToString() : item.NativeName;
         }

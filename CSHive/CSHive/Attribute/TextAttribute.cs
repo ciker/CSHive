@@ -18,7 +18,7 @@ namespace CS.Attribute
         }
 
         /// <summary>
-        /// 本地化名称
+        /// 本地化名称或本地化名称的代称（一个键可以通过一定规则译成本地语言）
         /// <remarks>显示给用户查看的枚举值</remarks>
         /// </summary>
         public string NativeName { get; set; }

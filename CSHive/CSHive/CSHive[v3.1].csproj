@@ -135,6 +135,7 @@
     <Compile Include="Validation\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Componets\" />
     <Folder Include="System\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

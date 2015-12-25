@@ -10,6 +10,7 @@
 
 using System;
 using System.Text.RegularExpressions;
+using System.Web.UI.HtmlControls;
 
 namespace CS.Validation
 {
@@ -84,6 +85,15 @@ namespace CS.Validation
         /// <summary>
         /// 帐户验证[英文数字]:英文开头,4~32位
         /// </summary>
+        /// <returns></returns>
+        public static bool AccountValidator()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// 帐户验证[英文数字]:英文开头,4~32位
+        /// </summary>
         /// <param name="input"></param>
         /// <returns>通过验证为true</returns>
         public static bool AccountValidator(string input)
@@ -120,6 +130,16 @@ namespace CS.Validation
         public static bool PasswordValidator(string input)
         {
             return Verify(input, RegexLib.PASSWORD);
+        }
+
+        /// <summary>
+        /// 严格密码验证：密码中必须包含字母、数字、特称字符，至少8个字符，最多32个字符
+        /// </summary>
+        /// <param name="intput"></param>
+        /// <returns></returns>
+        public static bool StrickPasswordValidtor(string intput)
+        {
+            return Verify(intput, RegexLib.STRICTPASSWORD);
         }
 
         /// <summary>
