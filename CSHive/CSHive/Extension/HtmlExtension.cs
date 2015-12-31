@@ -8,6 +8,16 @@
     {
 
         /// <summary>
+        /// 生成键与值相同的属性-值 key="value" 字符串
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ToProperty(this string value)
+        {
+            return value.ToProperty(value);
+        }
+
+        /// <summary>
         /// 如果值不为空时生成 key="value" 字符串
         /// </summary>
         /// <param name="key"></param>
