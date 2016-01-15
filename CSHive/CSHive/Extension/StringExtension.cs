@@ -1127,7 +1127,7 @@ namespace System
         /// <returns></returns>
         public static string CutToSafeHtml(this string html, int maxLength, string omitStr = "")
         {
-            var val = string.Format("{0}{1}", html.ByteLeft(maxLength), omitStr);
+            var val = $"{html.ByteLeft(maxLength)}{omitStr}";
             return val.ToSafeHtml();
         }
 

@@ -1,4 +1,6 @@
-﻿namespace System
+﻿using System.Text.RegularExpressions;
+
+namespace System
 {
 
     /// <summary>
@@ -6,6 +8,29 @@
     /// </summary>
     public static class HtmlExtension
     {
+        /// <summary>
+        /// 将Html代清除后截取一定长度做为摘要信息
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="length"></param>
+        /// <param name="omitStr"></param>
+        /// <returns></returns>
+        public static string ToSummary(this string html, int length,string omitStr = "...")
+        {
+            var txt = html.RemoveHtml();
+            return txt.CutToSafeHtml(length, omitStr);
+        }
+
+        /// <summary>
+        /// 移除Html的所有标签
+        /// </summary>
+        /// <param name="html"></param>
+        /// <returns></returns>
+        public static string RemoveHtml(this string html)
+        {
+            var reg = new Regex("<[^>]+>", RegexOptions.Compiled);
+            return reg.Replace(html, "");
+        }
 
         /// <summary>
         /// 生成键与值相同的属性-值 key="value" 字符串
