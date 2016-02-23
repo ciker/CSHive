@@ -10,6 +10,14 @@ namespace CS.Utils
     /// </summary>
     public class FileHelper
     {
+
+        /// <summary>
+        /// 获取扩展名
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
+        public static string GetExtension(string uri) => Path.GetExtension(uri);
+
         /// <summary>
         /// 返回文件或目录的全路径
         /// </summary>
@@ -60,6 +68,18 @@ namespace CS.Utils
             {
                 stream.Write(data,0,data.Length);
                 stream.Close();
+            }
+        }
+
+        /// <summary>
+        /// 删除所有文件
+        /// </summary>
+        /// <param name="fileNames"></param>
+        public static void Delete(string[] fileNames)
+        {
+            foreach (var name in fileNames)
+            {
+                File.Delete(name);
             }
         }
 
