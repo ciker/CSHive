@@ -50,7 +50,9 @@
     <Compile Include="Attribute\EditEnableAttribute.cs" />
     <Compile Include="Attribute\EnumInfo.cs" />
     <Compile Include="Attribute\ValidationAttribute.cs" />
+    <Compile Include="Caching\BurnCache.cs" />
     <Compile Include="Componets\ArrayEqualityComparer.cs" />
+    <Compile Include="Diagnostics\ProcessHelper.cs" />
     <Compile Include="Extension\BitExtension.cs" />
     <Compile Include="Extension\HexStringExtension.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
