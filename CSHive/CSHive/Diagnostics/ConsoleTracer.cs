@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace CS.Diagnostics
 {
@@ -7,7 +8,7 @@ namespace CS.Diagnostics
     /// </summary>
     public class ConsoleTracer:ITracer
     {
-        private readonly object _syncLock = new object();
+        
 
         /// <summary>
         /// 输出内容级别，设定后可输出设定的级别的消息
@@ -132,17 +133,25 @@ namespace CS.Diagnostics
             WriteLine(ConsoleColor.Red, ConsoleColor.Black, string.Format(provider,format,args));
         }
 
+        //private readonly object _syncLock = new object();
 
-        void WriteLine(ConsoleColor foreColor, ConsoleColor backColor, object str)
+        /// <summary>
+        /// 整个方法锁定使用 MethodImplOptions.Synchronized
+        /// </summary>
+        /// <param name="foreColor"></param>
+        /// <param name="backColor"></param>
+        /// <param name="str"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        static void WriteLine(ConsoleColor foreColor, ConsoleColor backColor, object str)
         {
-            lock (_syncLock)
-            {
-                Console.ForegroundColor = foreColor;
-                Console.BackgroundColor = backColor;
-                Console.WriteLine("[{0:HH:mm:ss,ffff}] {1}", DateTime.Now,  str);
-                Console.ForegroundColor = ConsoleColor.White; //恢复成前景白色
-                Console.BackgroundColor = ConsoleColor.Black;//恢复成黑色背景
-            }
+            //lock (_syncLock)
+            //{
+            //}
+            Console.ForegroundColor = foreColor;
+            Console.BackgroundColor = backColor;
+            Console.WriteLine("[{0:HH:mm:ss,ffff}] {1}", DateTime.Now, str);
+            Console.ForegroundColor = ConsoleColor.White; //恢复成前景白色
+            Console.BackgroundColor = ConsoleColor.Black;//恢复成黑色背景
         }
 
     }

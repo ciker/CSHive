@@ -9,7 +9,9 @@ namespace CS.Http
     /// </summary>
     public class HttpUrlParams:HttpParams
     {
-        
+        /// <summary>
+        /// 
+        /// </summary>
         public HttpUrlParams()
         {
             var request = HttpContext.Current.Request;

@@ -50,6 +50,12 @@
     <Compile Include="Attribute\EditEnableAttribute.cs" />
     <Compile Include="Attribute\EnumInfo.cs" />
     <Compile Include="Attribute\ValidationAttribute.cs" />
+    <Compile Include="Caching\BurnCache.cs" />
+    <Compile Include="Componets\ArrayEqualityComparer.cs" />
+    <Compile Include="Diagnostics\ProcessHelper.cs" />
+    <Compile Include="Extension\BitExtension.cs" />
+    <Compile Include="Extension\HexStringExtension.cs" />
+    <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Storage\FileStorage.cs" />
     <Compile Include="Storage\JsonStorage.cs" />
     <Compile Include="Diagnostics\ConsoleTracer.cs" />
@@ -123,10 +129,11 @@
     <Compile Include="Storage\BinaryStorage.cs" />
     <Compile Include="Storage\StringStorage.cs" />
     <Compile Include="Storage\XmlStorage.cs" />
-    <Compile Include="Utils\App.cs" />
+    <Compile Include="Utils\AppHelper.cs" />
     <Compile Include="Theory\GaussianRandom.cs" />
     <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="Utils\GZipHelper.cs" />
+    <Compile Include="Utils\HashHelper.cs" />
     <Compile Include="Utils\ReportHelper.cs" />
     <Compile Include="Utils\TypeHelper.cs" />
     <Compile Include="Validation\RegexLib.cs" />

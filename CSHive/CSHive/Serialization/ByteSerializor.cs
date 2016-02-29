@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CS.Serialization
@@ -8,6 +9,25 @@ namespace CS.Serialization
     /// </summary>
     public class ByteSerializor
     {
+
+        /// <summary>
+        /// 把一个对象进行深度复制
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        public static T DeepCopy<T>(object o)
+        {
+            if (o == null) return default(T);
+            using (Stream memory = new MemoryStream())
+            {
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(memory, o);
+                memory.Seek(0, SeekOrigin.Begin);
+                return (T)formatter.Deserialize(memory);
+            }
+        }
+
         /// <summary>
         /// 把对象序列化并返回相应的字节
         /// </summary>

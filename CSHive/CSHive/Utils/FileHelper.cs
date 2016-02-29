@@ -1,10 +1,23 @@
-﻿namespace CS.Utils
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using static System.String;
+
+namespace CS.Utils
 {
     /// <summary>
     /// 文件辅助类
     /// </summary>
     public class FileHelper
     {
+
+        /// <summary>
+        /// 获取扩展名
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
+        public static string GetExtension(string uri) => Path.GetExtension(uri);
+
         /// <summary>
         /// 返回文件或目录的全路径
         /// </summary>
@@ -12,7 +25,115 @@
         /// <returns></returns>
         public static string GetFullPath(string fileName)
         {
-            return App.CombinePath(fileName);
+            return CombinePath(fileName);
         }
+        /// <summary>
+        /// 返回相对路径
+        /// </summary>
+        /// <param name="fileName">非全路径的文件名，如：~/xxx/xxx/001.gif</param>
+        /// <returns></returns>
+        public static string GetRelativePath(string fileName)
+        {
+            var fullFile = GetFullPath(fileName);
+            var basePath = AppHelper.BaseDirectory;
+            return fullFile.Replace(basePath, "");
+        }
+
+        /// <summary>
+        /// 返回Web中Image使用的相对路径
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static string GetWebRelativePath(string fileName)
+        {
+            var realName = GetRelativePath(fileName);
+            return $"\\{realName.Replace("/", "\\")}";
+        }
+
+        /// <summary>
+        /// 保存文件，不存在路径时自动创建
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="data"></param>
+        public static void SaveFile(string fileName, byte[] data)
+        {
+            var fileInfo = new FileInfo(fileName);
+            var directory = fileInfo.Directory;
+            if(directory == null) return;
+            if( !directory.Exists)
+            {
+                directory.Create();
+            }
+            using (var stream = new FileStream(fileName, FileMode.OpenOrCreate,FileAccess.ReadWrite))
+            {
+                stream.Write(data,0,data.Length);
+                stream.Close();
+            }
+        }
+
+        /// <summary>
+        /// 删除所有文件
+        /// </summary>
+        /// <param name="fileNames"></param>
+        public static void Delete(string[] fileNames)
+        {
+            foreach (var name in fileNames)
+            {
+                File.Delete(name);
+            }
+        }
+
+        /// <summary>
+        /// Path 拼接
+        /// </summary>
+        /// <param name="paths">需要拼接的 Path 参数</param>
+        /// <returns>拼接后的结果</returns>
+        public static string CombinePath(params string[] paths)
+        {
+            var path = Join(Path.DirectorySeparatorChar + "", paths);
+            path = path.Replace('/', Path.DirectorySeparatorChar);
+            if (path.StartsWith("~" + Path.DirectorySeparatorChar) || path.StartsWith(Path.DirectorySeparatorChar + ""))
+                path = AppHelper.BaseDirectory + path.TrimStart('~', Path.DirectorySeparatorChar);
+            return path;
+        }
+        ///// <summary>
+        ///// 返回扩展名
+        ///// </summary>
+        ///// <param name="resourceName"></param>
+        ///// <returns></returns>
+        //public static string GetExtName(string resourceName)
+        //{
+        //    //var index = resourceName.LastIndexOf(".", StringComparison.Ordinal);
+        //    //var ext = resourceName.Substring(index + 1, resourceName.Length - index - 1);
+        //    //return ext;
+
+        //    //string filePath = @"E:\Randy0528\中文目录\JustTest.rar";
+        //    //Response.Write("文件路径：" + filePath);
+        //    //Response.Write("更改路径字符串的扩展名。");
+        //    //Response.Write(System.IO.Path.ChangeExtension(filePath, "txt"));
+        //    //Response.Write("返回指定路径字符串的目录信息。。");
+        //    //Response.Write(System.IO.Path.GetDirectoryName(filePath));
+        //    //Response.Write("返回指定的路径字符串的扩展名。");
+        //    //Response.Write(System.IO.Path.GetExtension(filePath));
+        //    //Response.Write("返回指定路径字符串的文件名和扩展名。");
+        //    //Response.Write(System.IO.Path.GetFileName(filePath));
+        //    //Response.Write("返回不具有扩展名的指定路径字符串的文件名。");
+        //    //Response.Write(System.IO.Path.GetFileNameWithoutExtension(filePath));
+        //    //Response.Write("获取指定路径的根目录信息。");
+        //    //Response.Write(System.IO.Path.GetPathRoot(filePath));
+        //    //Response.Write("返回随机文件夹名或文件名。");
+        //    //Response.Write(System.IO.Path.GetRandomFileName());
+        //    //Response.Write("创建磁盘上唯一命名的零字节的临时文件并返回该文件的完整路径。");
+        //    //Response.Write(System.IO.Path.GetTempFileName());
+        //    //Response.Write("返回当前系统的临时文件夹的路径。");
+        //    //Response.Write(System.IO.Path.GetTempPath());
+        //    //Response.Write("确定路径是否包括文件扩展名。");
+        //    //Response.Write(System.IO.Path.HasExtension(filePath));
+        //    //Response.Write("获取一个值，该值指示指定的路径字符串是包含绝对路径信息还是包含相对路径信息。");
+        //    //Response.Write(System.IO.Path.IsPathRooted(filePath));
+
+        //    return Path.GetExtension(resourceName);
+        //}
+
     }
 }

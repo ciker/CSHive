@@ -113,6 +113,7 @@ namespace CS.Attribute
                     //Console.WriteLine("{0}",  info.Name);
                     var item = list.FirstOrDefault(x => x.Name == info.Name);
                     if (item == null) continue;
+                    item.Name = attr.NativeName;
                     item.NativeName = attr.NativeName;
                     item.Ignore = attr.Ignore;
                     //扩展的初始化

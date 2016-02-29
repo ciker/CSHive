@@ -113,14 +113,14 @@ namespace CS.Diagnostics
         /// </summary>
         public static void Info(object msg)
         {
-            TraceLog.Debug(msg);
+            TraceLog.Info(msg);
         }
         /// <summary>
         /// 接收到的消息输出，仅用于输出一些注释性的说明
         /// </summary>
         public static void Info(object msg, Exception exp)
         {
-            TraceLog.Debug(msg,exp);
+            TraceLog.Info(msg,exp);
         }
         /// <summary>
         /// 

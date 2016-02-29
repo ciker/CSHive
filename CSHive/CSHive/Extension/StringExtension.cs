@@ -11,6 +11,21 @@ namespace System
     public static class StringExtension
     {
 
+        /// <summary>
+        /// 返回方法调用信息
+        /// </summary>
+        /// <param name="fullName">名字空间.类名.方法名,程序集</param>
+        /// <returns>{程序集,类全名,方法名}</returns>
+        public static string[] ToFuncInfo(this string fullName)
+        {
+            var arrStr = fullName.Split(',');
+            if (arrStr.Length < 2) throw new ArgumentException($"{nameof(fullName)} 参数必须为： 名字空间.类名.方法名,程序集 的形式。");
+            var dotIndex = arrStr[0].LastIndexOf(".", StringComparison.Ordinal);
+            var className = arrStr[0].Substring(0, dotIndex);
+            var methodName = arrStr[0].Substring(dotIndex+1);
+            return new []{arrStr[1].Trim(), className.Trim(), methodName.Trim()};
+        }
+
 
         /// <summary>
         /// 当值为空时返回为空，否则返回通过template格式化后的值
@@ -86,6 +101,17 @@ namespace System
         public static T ToEnum<T>(this string param)
         {
             return param.ToEnum(default(T));
+        }
+
+        /// <summary>
+        /// 将某值转为对应的枚举的值
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="enumType"></param>
+        /// <returns></returns>
+        public static int ToEnum(this string value, Type enumType)
+        {
+            return (int)Enum.Parse(enumType, value, true);
         }
 
         /// <summary>
@@ -1101,7 +1127,7 @@ namespace System
         /// <returns></returns>
         public static string CutToSafeHtml(this string html, int maxLength, string omitStr = "")
         {
-            var val = string.Format("{0}{1}", html.ByteLeft(maxLength), omitStr);
+            var val = $"{html.ByteLeft(maxLength)}{omitStr}";
             return val.ToSafeHtml();
         }
 

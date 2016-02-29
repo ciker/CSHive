@@ -80,13 +80,39 @@ namespace CS.Utils
             return Convert.ChangeType(value, type);
         }
 
+        /// <summary>
+        /// 根据类型名称： 类型名,所在程序集名  或 简单类型名   找到具体的类型
+        /// </summary>
+        /// <param name="typename"></param>
+        /// <returns></returns>
+        public static Type FindType(string typename)
+        {
+            if (string.IsNullOrWhiteSpace(typename)) throw new TypeLoadException($"[Type:{typename}]类型名不能为空。");
+            var arrType = typename.Split(',');
+            try
+            {
+                var tp = GetType(arrType[0]);
+                if (tp != null)
+                    return tp;
+            }
+            catch (TypeLoadException ex)
+            {
+                //Tracer.Error("获取类型时异常", ex);
+                //异常时继续下面的其它程序集查找
+            }
+            if (arrType.Length < 2) throw new TypeLoadException($"Type:{typename}无法查找到类型，请加上类型所在的程序集名称。");
+            var assembly = Assembly.Load(arrType[1]);
+            return assembly.GetType(arrType[0]);
+        }
+
+
 
         /// <summary>
-        /// 扩展方法，获取字符串对应的类型
+        /// 获取字符串对应的类型
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static Type ToType(string type)
+        public static Type GetType(string type)
         {
             switch (type.ToLower())
             {
@@ -127,7 +153,6 @@ namespace CS.Utils
                     return Type.GetType("System.Guid", true, true);
                 default:
                     return Type.GetType(type, true, true);
-                    //return GetTypeFromAssembly(type);
             }
         }
 
