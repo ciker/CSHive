@@ -215,6 +215,7 @@ namespace CS.Diagnostics
 
         #region 对像相关属性输出
 
+       
 
         /// <summary>
         /// 输出DataSet里数据
@@ -372,6 +373,39 @@ namespace CS.Diagnostics
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// 输出静态类的所有属性值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        [Conditional("DEBUG"), Conditional("TRACE")]
+        public static void DebugModel(Type staticClassType)
+        {
+            DebugModel(staticClassType, null);
+        }
+
+        /// <summary>
+        /// 输出静态类的所有属性值
+        /// </summary>
+        /// <param name="staticClassType"></param>
+        /// <param name="lable"></param>
+        [Conditional("DEBUG"), Conditional("TRACE")]
+        public static void DebugModel(Type staticClassType,string lable)
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(@"----- PRINT PROPERTIES FOR {1} [{0}] -----", staticClassType, lable);
+            var type = staticClassType;
+            var prs = type.GetProperties();
+            foreach (var pr in prs)
+            {
+                Console.WriteLine($"{pr.Name}:\t{pr.GetValue(null, null)}");
+            }
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine();
+           
+        }
 
         #endregion
 
