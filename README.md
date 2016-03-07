@@ -1,13 +1,14 @@
 ## CSHive ##
 
 **CSHive** 是C#版的常用库，比如类型的快速转换，常用辅助工具类，性能调试 等
-
+**CS.Core** 是引入了Nuget相关管理包，常用组件并引用了CSHive的扩展组件
 ----------
 
 ### 开发约定
 - .Net最低版本4.0
 - IDE环境：VS2015 或 VS2013
-- 采用Nuget进行统一的库管理，当前项目中尽量不引用任何非官方库
+- **CSHive**项目中不引用任何非官方库
+- **CS.Core** 常用核心库并引用了CSHive，采用Nuget进行统一的库管理
 - 除非特殊情况，都采用UTF-8进行编码（如遇特殊情况，也必须提供UTF8的接口）
 - Extension文件夹采用命字空间命名，方便扩展方法的使用。TODO：一些相关方法需要修正与重命名
 
@@ -30,7 +31,6 @@
 - PM> Install-Package EntityFramework
 - PM> Install-Package Newtonsoft.Json
 - PM> Install-Package NUnit -Version 2.6.4
-
 
 
 ### jQuery ###
