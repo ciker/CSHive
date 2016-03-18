@@ -39,7 +39,7 @@
         }
 
         /// <summary>
-        /// 返回Init对应的字节数组
+        /// 返回Int对应的字节数组
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -48,9 +48,27 @@
             return BitConverter.GetBytes(param);
         }
 
+        /// <summary>
+        /// 返回Uint对应的字节数组
+        /// </summary>
+        /// <param name="pm"></param>
+        /// <returns></returns>
+        public static byte[] ToBytes(this uint pm)
+        {
+            return BitConverter.GetBytes(pm);
+        }
+
         #region ToInt() Int32 类型处理
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bs"></param>
+        /// <returns></returns>
+        public static int ToInt(this byte[] bs)
+        {
+            return BitConverter.ToInt32(bs,0);
+        }
 
         /// <summary>
         /// 范围约束(闭区间)

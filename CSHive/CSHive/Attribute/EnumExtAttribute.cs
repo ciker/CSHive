@@ -8,6 +8,9 @@ namespace CS.Attribute
 
     /// <summary>
     /// 枚举文本描述
+    /// <remarks>
+    /// 仅支持int类型
+    /// </remarks>
     /// </summary>
     //[AttributeUsage(AttributeTargets.All, Inherited = false)]
     public class EnumExtAttribute : TextAttribute
@@ -18,6 +21,15 @@ namespace CS.Attribute
         /// <param name="nativeName"></param>
         public EnumExtAttribute(string nativeName) : base(nativeName)
         {
+        }
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="nativeName"></param>
+        /// <param name="ignore"></param>
+        public EnumExtAttribute(string nativeName, bool ignore = false) : base(nativeName)
+        {
+            Ignore = ignore;
         }
 
         /// <summary>
@@ -58,7 +70,9 @@ namespace CS.Attribute
 
     /// <summary>
     /// 针对枚举的扩展
-    /// <remarks>TODO：枚举不能继承short等非Int或者转换出错</remarks>
+    /// <remarks>
+    /// TODO：枚举不能继承short等非Int或者转换出错
+    /// </remarks>
     /// </summary>
     public static class EnumExt
     {
@@ -105,6 +119,9 @@ namespace CS.Attribute
             {
                 var fields = type.GetFields(BindingFlags.Static | BindingFlags.Public);
                 list = (from fi in fields select fi.GetValue(null) into value let name = Enum.GetName(type, value) where name != null select new EnumInfo { Name = name, Value = (int)value, NativeName = name }).ToList();
+                //var vs = Enum.GetValues(type);
+                //list.AddRange(from object v in Enum.GetValues(type) let name = Enum.GetName(type, v) select new EnumInfo() {Value = v, Name = name, NativeName = name});
+
                 var mbs = type.GetMembers();
                 foreach (var info in mbs)
                 {
@@ -113,7 +130,7 @@ namespace CS.Attribute
                     //Console.WriteLine("{0}",  info.Name);
                     var item = list.FirstOrDefault(x => x.Name == info.Name);
                     if (item == null) continue;
-                    item.Name = attr.NativeName;
+                    //item.Name = attr.NativeName;//Note:不要改变Name，这个是原始的值，对应英文的Value和Name
                     item.NativeName = attr.NativeName;
                     item.Ignore = attr.Ignore;
                     //扩展的初始化

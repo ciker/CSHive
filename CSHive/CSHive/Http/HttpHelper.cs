@@ -73,6 +73,20 @@ namespace CS.Http
             return sync.HttpPost(url, urlParameters);
         }
 
+        /// <summary>
+        ///  Post方法请求并返回消息 ,可配超时
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
+        public static string Post(string url, string data, int timeout)
+        {
+            var sync = new SyncHttp(timeout);
+            return sync.HttpPost(url, data);
+        }
+
+
         #endregion
 
 

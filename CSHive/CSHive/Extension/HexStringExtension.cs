@@ -11,9 +11,11 @@ namespace System
         /// 将Hex字符串转为字节流，16进制相连，没有连接符
         /// </summary>
         /// <param name="hexStr"></param>
+        /// <param name="dashStr">连字符</param>
         /// <returns></returns>
-        public static byte[] FromHex(this string hexStr)
+        public static byte[] FromHex(this string hexStr, string dashStr = "-")
         {
+            hexStr = hexStr.Replace("-", ""); //默认除去-
             var list = new List<byte>();
             var max = hexStr.Length;
             for (int i = 0; i < max; i++)
@@ -24,5 +26,7 @@ namespace System
             }
             return list.ToArray();
         }
+       
+
     }
 }

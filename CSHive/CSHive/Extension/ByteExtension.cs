@@ -5,10 +5,25 @@ using System.Text;
 namespace System
 {
     /// <summary>
-    /// Byte的相关转换
+    /// Byte的相关的基本类型的互相转换
     /// </summary>
     public static class ByteExtension
     {
+
+        //#region 常用类型转为Byte
+
+        ///// <summary>
+        ///// 将int 转为byte[]
+        ///// </summary>
+        ///// <param name="val"></param>
+        ///// <returns></returns>
+        //public static byte[] ToBytes(this int val)
+        //{
+        //    return  BitConverter.GetBytes(val);
+        //}
+
+        //#endregion
+
 
 
         ///// <summary>
