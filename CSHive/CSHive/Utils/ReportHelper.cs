@@ -10,6 +10,9 @@ namespace CS.Utils
     {
         /// <summary>
         /// 导出字符串文本文件
+        /// <remarks>
+        /// csv格式只能意表
+        /// </remarks>
         /// </summary>
         public static void ExportText(string fileName,string text)
         {

@@ -53,6 +53,14 @@ namespace CS.Validation
 
         /// <summary>
         /// 密码中必须包含字母、数字、特称字符，至少8个字符，最多32个字符
+        /// <remarks>
+        /// <code>
+        /// (?=.*[0-9])                     #必须包含数字
+        /// (?=.*[a-zA-Z])                  #必须包含小写或大写字母
+        /// (?=([\x21-\x7e]+)[^a-zA-Z0-9])  #必须包含特殊符号
+        /// .{8,30}                         #至少8个字符，最多30个字符
+        /// </code>
+        /// </remarks>
         /// </summary>
         public const string STRICTPASSWORD = @"(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,32}";
 

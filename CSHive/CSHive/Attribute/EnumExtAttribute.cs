@@ -83,7 +83,7 @@ namespace CS.Attribute
         /// <typeparam name="T"></typeparam>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static List<T> GetItems<T>(this Type type) where T : IEnumInfo, new()
+        public static IEnumerable<T> GetItems<T>(this Type type) where T : IEnumInfo, new()
         {
             var list = new List<T>();
             if (type.IsEnum)
@@ -104,7 +104,7 @@ namespace CS.Attribute
                     item.Init(attr);
                 }
             }
-            return list.Where(x => !x.Ignore).ToList();
+            return list.Where(x => !x.Ignore);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace CS.Attribute
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static List<EnumInfo> GetItems(this Type type)
+        public static IEnumerable<EnumInfo> GetItems(this Type type)
         {
             var list = new List<EnumInfo>();
             if (type.IsEnum)
@@ -140,7 +140,7 @@ namespace CS.Attribute
                 }
             }
             //return list.Where(x => !x.Ignore).OrderBy(x => x.Order).Cast<EnumInfo>().ToList();
-            return list.Where(x => !x.Ignore).ToList();
+            return list.Where(x => !x.Ignore);
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace CS.Attribute
         /// <param name="en"></param>
         /// <param name="items">可以是缓存的集合，提高效率</param>
         /// <returns></returns>
-        public static EnumInfo ToEnumInfo(this Enum en, List<EnumInfo> items)
+        public static EnumInfo ToEnumInfo(this Enum en, IEnumerable<EnumInfo> items)
         {
             var item = items?.FirstOrDefault(x => x.Name == en.ToString());
             return item;

@@ -24,6 +24,39 @@ namespace CS.Utils
             return types.Select(tp => (T) Activator.CreateInstance(tp)).Where(instance => instance != null).ToList();
         }
 
+
+        /// <summary>
+        /// 返回 参数types 所在程序集中所有实现了T类型的子类集合
+        /// <remarks>
+        /// <![CDATA[
+        /// Example:    TypeHelper.GetSubClasses<CmsManageController>(new[] {typeof (DebugController)});
+        /// ]]>        
+        /// </remarks>
+        /// </summary>
+        /// <param name="types"></param>
+        /// <returns></returns>
+        public static IEnumerable<Type> GetSubClasses<T>(Type[] types) where T :class 
+        {
+            var asses = types.Select(x => x.Assembly).Distinct();
+            var subTypes = new List<Type>();
+            foreach (var assembly in asses)
+            {
+                subTypes.AddRange(assembly.GetTypes().Where(x=>x.IsSubclassOf(typeof(T))));
+            }
+            return subTypes.Distinct();
+        }
+
+        /// <summary>
+        /// 返回T类型所在程序集中所有实现了T类型的子类集合
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static IEnumerable<Type> GetSubClasses<T>() where T : class
+        {
+            var type = typeof (T);
+            return type.Assembly.GetTypes().Where(x => x.IsSubclassOf(type));
+        }
+
         /// <summary>
         /// 返回某了父类下所有子类的类型<see cref="Type"/>集合
         /// </summary>

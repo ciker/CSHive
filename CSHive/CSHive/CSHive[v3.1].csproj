@@ -57,6 +57,7 @@
     <Compile Include="Extension\BitExtension.cs" />
     <Compile Include="Extension\HexStringExtension.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
+    <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="Storage\FileStorage.cs" />
     <Compile Include="Storage\JsonStorage.cs" />

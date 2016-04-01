@@ -14,6 +14,18 @@ namespace CS.Utils
         /// </summary>
         public static string BaseDirectory => AppDomain.CurrentDomain.BaseDirectory;
 
+        /// <summary>
+        /// 返回可用的路径信息
+        /// </summary>
+        /// <param name="relativePath">相对于运行目录的相对路径</param>
+        /// <returns>指定路径不存在时返回null</returns>
+        public static DirectoryInfo GetDirectory(string relativePath)
+        {
+            var path = FileHelper.CombinePath(relativePath);
+            var di = new DirectoryInfo(path);
+            return di.Exists ? di : null;
+        }
+
         ///// <summary>
         ///// 返回本地格式的 文件的绝对路径
         ///// </summary>

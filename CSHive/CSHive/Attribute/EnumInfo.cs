@@ -16,6 +16,11 @@ namespace CS.Attribute
         bool Ignore { get; set; }
 
         /// <summary>
+        /// 标识色
+        /// </summary>
+        int Color { get; set; }
+
+        /// <summary>
         /// 属性名称
         /// </summary>
         string Name { get; set; }
@@ -30,6 +35,14 @@ namespace CS.Attribute
         /// 本地化显示的名称
         /// </summary>
         string NativeName { get; set; }
+
+        /// <summary>
+        /// 扩展出的相关数据
+        /// <remarks>
+        /// 有可能是查询条件，也有可能是别的扩展内容
+        /// </remarks>
+        /// </summary>
+        string Data { get; set; }
 
         /// <summary>
         /// 初始化其它属性
@@ -47,12 +60,17 @@ namespace CS.Attribute
     {
 
         public bool Ignore { get; set; }
-       
+
+        public int Color { get; set; }
+
         public string Name { get; set; }
 
         public object Value { get; set; }
         
         public string NativeName { get; set; }
+
+        public string Data { get; set; }
+
         /// <summary>
         /// 子类重写进行相关扩展的属性初始化
         /// </summary>
@@ -62,7 +80,7 @@ namespace CS.Attribute
             //默认里没有其它属性初始化，子类重写进行相关扩展的属性初始化
         }
     }
-
+    
 
     /// <summary>
     /// 带排序性质的枚举信息
@@ -104,17 +122,45 @@ namespace CS.Attribute
         }
 
         /// <summary>
-        ///  通过值获取本地化(中文)名称(取不到时为原值)
+        /// 根据value找出对应的NativeName，取不到时为原值
         /// </summary>
-        /// <param name="ol"></param>
+        /// <param name="list"></param>
+        /// <param name="value"></param>
+        public static string GetNativeName(this List<EnumInfo> list, object value)
+        {
+            return list.GetInfo(value)?.NativeName ?? value.ToString();
+        }
+
+        /// <summary>
+        /// 根据value找出对应的反特性信息，取不到时为null
+        /// </summary>
+        /// <param name="list"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string GetNativeNameName(this List<EnumInfo> ol, object value)
+        public static EnumInfo GetInfo(this List<EnumInfo> list, object value)
         {
-            var item = ol.FirstOrDefault(x => x.Value?.ToString() == (value?.ToString()));
-            //return item == null ? value.ToString(CultureInfo.InvariantCulture) : item.NativeName;
-            return item == null ? value?.ToString() : item.NativeName;
+            if (list == null || value == null) return null;
+            var fv = list[0].Value;
+            if (fv is Enum || fv is int)
+                return list.FirstOrDefault(x => x.Value.Equals(value));
+
+            return list.FirstOrDefault(
+                    x => x.Value.ToString().Equals(value.ToString(), StringComparison.OrdinalIgnoreCase));
         }
+
+
+        ///// <summary>
+        /////  通过值获取本地化(中文)名称(取不到时为原值)
+        ///// </summary>
+        ///// <param name="ol"></param>
+        ///// <param name="value"></param>
+        ///// <returns></returns>
+        //public static string GetNativeNameName(this List<EnumInfo> ol, object value)
+        //{
+        //    var item = ol.FirstOrDefault(x => x.Value?.ToString() == (value?.ToString()));
+        //    //return item == null ? value.ToString(CultureInfo.InvariantCulture) : item.NativeName;
+        //    return item == null ? value?.ToString() : item.NativeName;
+        //}
 
         ///// <summary>
         ///// 通过值获取颜色
