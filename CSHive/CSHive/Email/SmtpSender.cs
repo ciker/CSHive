@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Threading;
+using System.Threading.Tasks;
+using CS.Diagnostics;
 
 namespace CS.Email
 {
@@ -116,6 +119,30 @@ namespace CS.Email
         }
 
         /// <summary>
+        /// 异步发邮件
+        /// </summary>
+        /// <param name="emailMessage"></param>
+        /// <returns></returns>
+        public async Task<bool> BeginSend(EmailMessage emailMessage)
+        {
+            return await Task.Run(() =>
+            {
+                try
+                {
+                    Send(emailMessage);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Tracer.Debug(ex);
+                    //throw;
+                    return false;
+                }
+            });
+        }
+
+
+        /// <summary>
         ///     Sends a EmailMessage.
         /// <remarks>
         /// TODO:异步发送时无法发送成功
@@ -140,9 +167,9 @@ namespace CS.Email
                 //var msgGuid = new Guid();//ERROR
                 var msgGuid = Guid.NewGuid();
                 SendCompletedEventHandler sceh = null;
-                sceh = delegate(object sender, AsyncCompletedEventArgs e)
+                sceh = delegate (object sender, AsyncCompletedEventArgs e)
                 {
-                    if (msgGuid == (Guid) e.UserState)
+                    if (msgGuid == (Guid)e.UserState)
                         msg.Dispose();
                     // The handler itself, cannot be null, test omitted
                     _smtpClient.SendCompleted -= sceh;
@@ -206,7 +233,7 @@ namespace CS.Email
 
             foreach (DictionaryEntry entry in emailMessage.Headers)
             {
-                mailMessage.Headers.Add((string) entry.Key, (string) entry.Value);
+                mailMessage.Headers.Add((string)entry.Key, (string)entry.Value);
             }
 
             foreach (var mailAttach in emailMessage.Attachments.Select(attachment => attachment.Stream != null

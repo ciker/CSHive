@@ -18,6 +18,7 @@ namespace System
         /// <returns>{程序集,类全名,方法名}</returns>
         public static string[] ToFuncInfo(this string fullName)
         {
+            if (string.IsNullOrWhiteSpace(fullName)) return null;
             var arrStr = fullName.Split(',');
             if (arrStr.Length < 2) throw new ArgumentException($"{nameof(fullName)} 参数必须为： 名字空间.类名.方法名,程序集 的形式。");
             var dotIndex = arrStr[0].LastIndexOf(".", StringComparison.Ordinal);
@@ -269,6 +270,17 @@ namespace System
                 }
             }
             return result;
+        }
+
+        /// <summary>
+        /// 将默认的参数转为数组集合后再或运算
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static int ToOrResult(this string param)
+        {
+            var arr = param.ToIntArray();
+            return arr.Aggregate(0, (current, i) => current | i);
         }
 
         /// <summary>

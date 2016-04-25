@@ -7,6 +7,12 @@ public sealed class ArrayEqualityComparer<T> : IEqualityComparer<T[]>
     private static readonly EqualityComparer<T> elementComparer
         = EqualityComparer<T>.Default;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="first"></param>
+    /// <param name="second"></param>
+    /// <returns></returns>
     public bool Equals(T[] first, T[] second)
     {
         if (first == second)
@@ -31,6 +37,11 @@ public sealed class ArrayEqualityComparer<T> : IEqualityComparer<T[]>
         return true;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="array"></param>
+    /// <returns></returns>
     public int GetHashCode(T[] array)
     {
         unchecked
