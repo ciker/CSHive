@@ -53,11 +53,11 @@
 
 [艺风在线](http://max.cszi.com)
 
+##### 我要站在巨人们的肩膀上 #####
+
 ------------
->*Author*: atwind   
+>*Author*: [atwind](mailto:atwind@cszi.com)   
 >*Owners*: CSStudio    
 >*Copyright*: [cszi.com](http://www.cszi.com)     
    
 ----------
-
-##### 我要站在巨人们的肩膀上 #####
