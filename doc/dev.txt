@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+    <metadata minClientVersion="4.5">
+        <id>CSHive</id>
+        <version>1.0.0</version>
+        <title>CSHive-常用扩展及辅助类库</title>
+        <authors>atwind</authors>
+        <owners>CSStudio</owners>
+        <projectUrl>https://github.com/CSStudio/CSHive</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>CSHive 是C#版的常用库，比如类型的快速转换，常用辅助工具类，性能调试 等</description>
+        <summary>CSHive 是C#版的常用库，比如类型的快速转换，常用辅助工具类，性能调试 等。</summary>
+        <releaseNotes>.Net最低版本4.5
+IDE环境：VS2015 或 VS2013
+CSHive项目中不引用任何非官方库
+除非特殊情况，都采用UTF-8进行编码（如遇特殊情况，也必须提供UTF8的接口）
+Extension文件夹采用命字空间命名，方便扩展方法的使用。</releaseNotes>
+        <copyright>cszi.com</copyright>
+        <language>zh-CN</language>
+        <tags>.net,log,cache,extension</tags>
+    </metadata>
+</package>
+
+
+
+
+buildOutputPath="$(Build.SourcesDirectory)\sources\CSHive\bin\$(BuildConfiguration)";buildNumber="$(Build.BuildNumber)"
+
+
+buildOutputPath="$(Build.SourcesDirectory)\sources\CSHive\bin\$(BuildConfiguration)";buildNumber="$(Build.BuildNumber)"
+
+https://csstudios.pkgs.visualstudio.com/DefaultCollection/_packaging/nuget/nuget/v2
+
+
+参考文献：
+
+Automatically create and publish a NuGet package using VSTS  https://technologies.live/2016/04/01/automatically-create-and-publish-a-nuget-package/
