@@ -15,6 +15,11 @@
 
 
 ---------------
+### 安装本类库 (To install CSHive, run the following command in the Package Manager Console)
+
+> PM> Install-Package CSHive
+
+--------------
 
 ### 开发约定
 - .Net最低版本4.5
