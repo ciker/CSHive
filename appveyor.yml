@@ -9,21 +9,41 @@ version: '3.2.0.{build}'
 # version: 1.0.{build}-{branch}
 
 
+# Skipping commits with particular message or from user
+skip_commits:
+  message: /Created.*\.(png|jpg|jpeg|bmp|gif)/       # Regex for matching commit message
+  #author: John        # Commit author's username, name, email or regexp maching one of these.
 
-##### 重新指定版本号 #####
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+# environment variables
+environment:
+  #appName: Demo\App
+  libName: CSHive
+  # this is how to set encrypted variable. Go to "Encrypt data" page in account menu to encrypt data. use it by $(nuget_api_key)
+  nuget_api_key:
+    secure: /Z553zFSrf/BSO3PX8dmc0XWOLA034CYAOhp8ZubIlpTHGG5h2O25K9STPOf80Aq
+
+
+# enable patching of AssemblyInfo.* files
 assembly_info:
   patch: true
-  file: sources\CSHive\Properties\AssemblyInfo.cs            #将上面生成的版本号${version}变量替换原来Lib里的版本信息
+  file: sources\$(libName)\Properties\AssemblyInfo.*			#将上面生成的版本号${version}变量替换原来Lib里的版本信息
   assembly_version: '{version}'
   assembly_file_version: '4.5.0.0'
   assembly_informational_version: '{version}-rc1'
 
 
-#### 编辑平台特性 #####
-#platform:
-#  - x86
-#  - Any CPU
-#
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+  
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform: Any CPU
+
 configuration:
 #  - Debug
   - Release
@@ -49,8 +69,8 @@ build:
 #---------------------------------#
 artifacts:
     
-  - path: sources\CSHive\bin\$(configuration)\
-    name: Lib
+  - path: sources\$(libName)\bin\$(configuration)\
+    name: CSHive_Lib
 
 # pushing all *.nupkg files in directory
   - path: out\*.nupkg
@@ -63,48 +83,12 @@ artifacts:
 #after_test:
 #  - ps: .\nuget\libpack.ps1  ###当项目中发现了对应工程文件 *.csproj 的对应的*.nuspec 配置信息会自动生成发行包与调试包(依赖build.publish_nuget的相关参数)，然后在布署中自动发布。
 
-  
+ 
 #---------------------------------#
 #     deployment configuration    #
 #---------------------------------#  
   
 deploy:
-
-  - provider: NuGet
-    api_key:
-      secure: /Z553zFSrf/BSO3PX8dmc0XWOLA034CYAOhp8ZubIlpTHGG5h2O25K9STPOf80Aq
-    artifact: /.*\.nupkg/
-    on:
-      #branch: master                # release from master branch only
-      appveyor_repo_tag: false        # deploy on tag push only  # 目前设定为只要提交或是合并，都发布一个新的版本至nuget，看以后情况来设定为按Tag发布
-
-
-  # Deploy to GitHub Releases
-  #- provider: GitHub
-  #  artifact: /.*\.nupkg/           # upload all NuGet packages to release assets
-  #  draft: true
-  #  prerelease: false
-  #  on:
-  #    branch: master                # release from master branch only
-  #    appveyor_repo_tag: true       # deploy on tag push only  
-  
-  
-# scripts to run before deployment
-before_deploy:
-
-# scripts to run after deployment
-after_deploy:
-
-# to run your custom scripts instead of provider deployments
-deploy_script:
-
-# to disable deployment
-#deploy: off  
-  
-  
-##-----------------------------------------------------------------------------##
-# 注意：
-# 1. yml文件中不允许使用Tab制表符空格，切记。
-##-----------------------------------------------------------------------------##
-
-  
+  provider: NuGet
+  api_key: $(nuget_api_key)
+  artifact: /.*\.nupkg/
