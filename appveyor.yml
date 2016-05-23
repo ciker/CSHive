@@ -3,7 +3,7 @@
 #---------------------------------#
 
 # version format
-version: '3.2.{build}.1'
+version: '3.2.0.{build}'
 
 # you can use {branch} name in version format too
 # version: 1.0.{build}-{branch}
@@ -75,14 +75,14 @@ deploy:
       secure: /Z553zFSrf/BSO3PX8dmc0XWOLA034CYAOhp8ZubIlpTHGG5h2O25K9STPOf80Aq
     artifact: /.*\.nupkg/
     on:
-      branch: master                # release from master branch only
+      #branch: master                # release from master branch only
       appveyor_repo_tag: true       # deploy on tag push only
 
 
   # Deploy to GitHub Releases
   - provider: GitHub
     artifact: /.*\.nupkg/           # upload all NuGet packages to release assets
-    draft: false
+    draft: true
     prerelease: false
     on:
       branch: master                # release from master branch only
@@ -106,5 +106,5 @@ deploy_script:
 # 注意：
 # 1. yml文件中不允许使用Tab制表符空格，切记。
 ##-----------------------------------------------------------------------------##
-  
+
   
