@@ -9,6 +9,17 @@
 
 ----------
 
+### Build & Test Status ###
+----------
+[![Build status](https://ci.appveyor.com/api/projects/status/5eh33kdddm848yw9?svg=true)](https://ci.appveyor.com/project/cswares/cshive)
+
+
+---------------
+### 安装本类库 (To install CSHive, run the following command in the Package Manager Console)
+
+> PM> Install-Package CSHive
+
+--------------
 
 ### 开发约定
 - .Net最低版本4.5
@@ -53,11 +64,11 @@
 
 [艺风在线](http://max.cszi.com)
 
+##### 我要站在巨人们的肩膀上 #####
+
 ------------
->*Author*: atwind   
+>*Author*: [atwind](mailto:atwind@cszi.com)   
 >*Owners*: CSStudio    
 >*Copyright*: [cszi.com](http://www.cszi.com)     
    
 ----------
-
-##### 我要站在巨人们的肩膀上 #####
