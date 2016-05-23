@@ -74,10 +74,10 @@ deploy:
     api_key:
       secure: /Z553zFSrf/BSO3PX8dmc0XWOLA034CYAOhp8ZubIlpTHGG5h2O25K9STPOf80Aq
     artifact: /.*\.nupkg/
-	# 目前设定为只要提交或是合并，都发布一个新的版本
-    #on:
+	
+    on:
       #branch: master                # release from master branch only
-      #appveyor_repo_tag: true        # deploy on tag push only
+      appveyor_repo_tag: false        # deploy on tag push only  # 目前设定为只要提交或是合并，都发布一个新的版本至nuget，看以后情况来设定为按Tag发布
 
 
   # Deploy to GitHub Releases
