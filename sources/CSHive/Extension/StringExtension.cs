@@ -11,6 +11,25 @@ namespace System
     /// </summary>
     public static class StringExtension
     {
+        /// <summary>
+        /// 是否为null或空字符串
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this string str)
+        {
+            return string.IsNullOrEmpty(str);
+        }
+
+        /// <summary>
+        /// 是否为null或空字符串或全是空白的字符串
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsNullOrWhiteSpace(this string str)
+        {
+            return string.IsNullOrWhiteSpace(str);
+        }
 
         /// <summary>
         /// 将客户端的Canvas的toDataURL()方法获得的数据转为Base64编码的图片数据

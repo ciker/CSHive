@@ -65,7 +65,6 @@
     <Compile Include="Storage\JsonStorage.cs" />
     <Compile Include="Diagnostics\ConsoleTracer.cs" />
     <Compile Include="Diagnostics\ITracer.cs" />
-    <Compile Include="Diagnostics\TracerManager.cs" />
     <Compile Include="Email\AttachmentEncoding.cs" />
     <Compile Include="Email\Format.cs" />
     <Compile Include="Email\GmailSender.cs" />

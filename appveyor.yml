@@ -3,7 +3,7 @@
 #---------------------------------#
 
 # version format
-version: '3.2.0.{build}'
+version: '{build}-{branch}'
 
 # you can use {branch} name in version format too
 # version: 1.0.{build}-{branch}
@@ -21,8 +21,8 @@ skip_commits:
 
 # environment variables
 environment:
-  #appName: Demo\App
-  libName: CSHive
+  appName: CS.SwarmTask
+  libName: CS.SwarmTask.Framwork
   # this is how to set encrypted variable. Go to "Encrypt data" page in account menu to encrypt data. use it by $(nuget_api_key)
   nuget_api_key:
     secure: /Z553zFSrf/BSO3PX8dmc0XWOLA034CYAOhp8ZubIlpTHGG5h2O25K9STPOf80Aq
@@ -30,8 +30,8 @@ environment:
 
 # enable patching of AssemblyInfo.* files
 assembly_info:
-  patch: true
-  file: sources\$(libName)\Properties\AssemblyInfo.*			#将上面生成的版本号${version}变量替换原来Lib里的版本信息
+  patch: false
+  file: sources\$(libName)\Properties\AssemblyInfo.*      #将上面生成的版本号${version}变量替换原来Lib里的版本信息
   assembly_version: '{version}'
   assembly_file_version: '4.5.0.0'
   assembly_informational_version: '{version}-rc1'
@@ -63,6 +63,10 @@ build:
   
   # MSBuild verbosity level :  quiet|minimal|normal|detailed
   verbosity: minimal
+  
+# scripts to run before build
+before_build:
+  nuget restore sources\SwarmTask_vs2015.sln
 
 #---------------------------------#
 #      artifacts configuration    #
@@ -70,7 +74,10 @@ build:
 artifacts:
     
   - path: sources\$(libName)\bin\$(configuration)\
-    name: CSHive_Lib
+    name: Framework
+
+  - path: sources\$(appName)\bin\$(configuration)\
+    name: Task
 
 # pushing all *.nupkg files in directory
   - path: out\*.nupkg
