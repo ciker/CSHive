@@ -19,6 +19,8 @@ using System.Runtime.InteropServices;
 //请将此类型的 ComVisible 特性设置为 true。
 [assembly: ComVisible(false)]
 
+[assembly: InternalsVisibleTo("CSHiveTests")]
+
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
 [assembly: Guid("f647b933-64ca-473f-945e-6ac0df657e22")]
 
@@ -33,7 +35,7 @@ using System.Runtime.InteropServices;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.2.0.19")] //已取消CI脚本的版本号替换功能，该版本号将发布至NuGet上
+[assembly: AssemblyVersion("3.2.0.20")] //已取消CI脚本的版本号替换功能，该版本号将发布至NuGet上
 //[assembly: AssemblyFileVersion("4.0.0.0")]
 
 
@@ -43,6 +45,7 @@ using System.Runtime.InteropServices;
 V3.2
 -----------------------
 . 在GitHub上使用Appveyor进行编译，生成，打包与发布（通过Tag号来触发发布）
+. 增加自定义的KeyValueSectionHandler配置节，可以获取丰富的文本内容
 
 V3.1
 ----2015-11-05--------------

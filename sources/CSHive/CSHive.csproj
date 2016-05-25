@@ -55,12 +55,20 @@
     <Compile Include="Attribute\ValidationAttribute.cs" />
     <Compile Include="Caching\BurnCache.cs" />
     <Compile Include="Componets\ArrayEqualityComparer.cs" />
+    <Compile Include="Config\HandlerBase.cs" />
+    <Compile Include="Config\KeyValueSectionHandler.cs" />
     <Compile Include="Diagnostics\ProcessHelper.cs" />
     <Compile Include="Extension\BitExtension.cs" />
     <Compile Include="Extension\HexStringExtension.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Host.cs" />
+    <Compile Include="Res.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Res.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SR.cs" />
     <Compile Include="Storage\FileStorage.cs" />
     <Compile Include="Storage\JsonStorage.cs" />
     <Compile Include="Diagnostics\ConsoleTracer.cs" />
@@ -145,6 +153,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Res.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Res.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

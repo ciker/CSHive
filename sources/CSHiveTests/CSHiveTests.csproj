@@ -50,7 +50,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Config\ConfigTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SRTests.cs" />
     <Compile Include="Validation\ValidTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +60,9 @@
       <Project>{F647B933-64CA-473F-945E-6AC0DF657E22}</Project>
       <Name>CSHive</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
