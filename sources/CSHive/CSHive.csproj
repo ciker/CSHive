@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F647B933-64CA-473F-945E-6AC0DF657E22}</ProjectGuid>
+    <ProjectGuid>{B6DDBD54-681F-4D73-8071-BA5DDD34C14E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CS</RootNamespace>
@@ -61,7 +61,9 @@
     <Compile Include="Extension\BitExtension.cs" />
     <Compile Include="Extension\HexStringExtension.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
+    <Compile Include="Extension\JsonExtension.cs" />
     <Compile Include="Extension\TypeExtension.cs" />
+    <Compile Include="Extension\XmlExtension.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="Res.Designer.cs">
       <AutoGen>True</AutoGen>
