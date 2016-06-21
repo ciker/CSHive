@@ -12,7 +12,7 @@
 ### Build & Test Status ###
 ----------
 [![Build status](https://ci.appveyor.com/api/projects/status/5eh33kdddm848yw9?svg=true)](https://ci.appveyor.com/project/cswares/cshive)
-
+[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg?maxAge=2592000?style=plastic)](https://www.nuget.org/packages/CSHive/)
 
 ---------------
 ### 安装本类库 (To install CSHive, run the following command in the Package Manager Console)

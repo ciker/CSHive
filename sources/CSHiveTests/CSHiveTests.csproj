@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Config\ConfigTests.cs" />
     <Compile Include="Extension\JsonTests.cs" />
+    <Compile Include="Extension\MathTests.cs" />
     <Compile Include="Extension\XmlExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SRTests.cs" />

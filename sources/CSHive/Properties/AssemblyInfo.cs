@@ -35,12 +35,16 @@ using System.Runtime.InteropServices;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.2.0.20")] //已取消CI脚本的版本号替换功能，该版本号将发布至NuGet上
+[assembly: AssemblyVersion("3.2.0.21")] //已取消CI脚本的版本号替换功能，该版本号将发布至NuGet上。Note:版本号不变化时将不会发布至Nuget上
 //[assembly: AssemblyFileVersion("4.0.0.0")]
 
 
 /*
 
+v3.2.0.21
+------------------------
+. 增加一个将数N尽可能分配到数组M中的算法
+. 增加一个辅助类，将一个普通Function执行异步调用
 
 V3.2
 -----------------------
