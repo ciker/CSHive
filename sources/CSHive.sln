@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSHive", "CSHive\CSHive.csproj", "{F647B933-64CA-473F-945E-6AC0DF657E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSHiveTests", "CSHiveTests\CSHiveTests.csproj", "{4B1E491A-EFDE-4DD8-9630-E56CE4FD35D6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{F647B933-64CA-473F-945E-6AC0DF657E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F647B933-64CA-473F-945E-6AC0DF657E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F647B933-64CA-473F-945E-6AC0DF657E22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B1E491A-EFDE-4DD8-9630-E56CE4FD35D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B1E491A-EFDE-4DD8-9630-E56CE4FD35D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B1E491A-EFDE-4DD8-9630-E56CE4FD35D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B1E491A-EFDE-4DD8-9630-E56CE4FD35D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
