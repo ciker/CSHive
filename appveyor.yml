@@ -63,6 +63,11 @@ build:
   
   # MSBuild verbosity level :  quiet|minimal|normal|detailed
   verbosity: minimal
+  
+# scripts to run before build
+before_build:
+  #- ps: (New-Object Net.WebClient).DownloadFile('https://www.nuget.org/nuget.exe', 'C:\Tools\NuGet\NuGet.exe')
+  - nuget restore sources\CSHive.sln
 
 #---------------------------------#
 #      artifacts configuration    #
