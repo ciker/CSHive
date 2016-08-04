@@ -130,8 +130,8 @@ namespace CS.Utils
             }
             catch (TypeLoadException ex)
             {
-                Tracer.Warn("获取类型时异常", ex);
-                //异常时继续下面的其它程序集查找
+                //Tracer.Warn("获取类型时异常", ex);
+                //异常时继续下面的其它程序集查找,所以这儿的日志也没有必要了
             }
             if (arrType.Length < 2) throw new TypeLoadException($"Type:{typename}无法查找到类型，请加上类型所在的程序集名称。");
             var assembly = Assembly.Load(arrType[1]);
